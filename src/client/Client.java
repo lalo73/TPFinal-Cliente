@@ -2,48 +2,63 @@ package client;
 
 import java.util.List;
 
-public class Client implements IClient{
+import server.Server;
 
-	@Override
-	public void logIn(String user, String password, IServer e, IAccesType at) {
-		// TODO Auto-generated method stub
-		
+public class Client implements IClient {
+
+	private ClientState clientState;
+
+	public Client(ClientState state) {
+		this.setClientState(state);
+	}
+
+	public void logIn(String user, String password, Server server, IAccesType at) {
+		this.getClientState().logIn(this, user, password, server, at);
 	}
 
 	@Override
 	public void askEmails() {
-		// TODO Auto-generated method stub
-		
+		this.getClientState().askEmails(this);
+
 	}
 
 	@Override
 	public void createList(String listName) {
-		// TODO Auto-generated method stub
-		
+		this.getClientState().createList(this, listName);
 	}
 
 	@Override
 	public void addToList(IContact c, List<IContact> contacts) {
-		// TODO Auto-generated method stub
-		
+		this.getClientState().addToList(this, c, contacts);
 	}
 
 	@Override
 	public List<IFolder> getFolders() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.getClientState().getFolders(this);
 	}
 
 	@Override
 	public void sendEmail(IEmail e) {
-		// TODO Auto-generated method stub
-		
+		this.getClientState().sendEmail(this, e);
 	}
 
 	@Override
-	public void getUser() {
+	public IUser getUser() {
+		return this.getClientState().getUser(this);
+	}
+
+	public ClientState getClientState() {
+		return clientState;
+	}
+
+	public void setClientState(ClientState clientState) {
+		this.clientState = clientState;
+	}
+
+	@Override
+	public void logIn(String user, String password, IServer e, IAccesType at) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

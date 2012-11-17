@@ -3,10 +3,11 @@
 	<name>TPFinal-Cliente</name>
 	<comment></comment>
 	<projects>
+		<project>TPFinal-Servidor</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>
 	<natures>
-	<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
 </projectDescription>
