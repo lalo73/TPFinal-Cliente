@@ -2,7 +2,7 @@ package client;
 
 public class Sender extends Field {
 
-	public String getCampo(IEmail e){
+	public String getField(IEmail e){
 		
 		return e.getSender();
 	}

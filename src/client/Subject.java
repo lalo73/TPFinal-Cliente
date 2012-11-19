@@ -3,7 +3,7 @@ package client;
 public class Subject extends Field {
 	
 	
-	public String getCampo(IEmail e){
+	public String getField(IEmail e){
 		
 		return e.getSubject();
 	}

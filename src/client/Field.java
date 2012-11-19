@@ -1,8 +1,7 @@
 package client;
 
 public abstract class Field {
+	
+	public abstract String getField();
 
-	public abstract String getCampo(IEmail e);
-	
-	
 }

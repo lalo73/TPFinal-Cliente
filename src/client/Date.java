@@ -2,7 +2,7 @@ package client;
 
 public class Date extends Field {
 	
-	public String getCampo(IEmail e){
+	public String getField(IEmail e){
 		
 		String fecha = e.getDate();
 		
