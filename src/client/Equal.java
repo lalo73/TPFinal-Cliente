@@ -1,6 +1,6 @@
 package client;
 
-public abstract class Equal extends Rule {
+public class Equal extends Rule {
 	
 	String eString;
 	
@@ -8,6 +8,19 @@ public abstract class Equal extends Rule {
 		
 		return s.equals(eString);
 	}
+
+	public String geteString() {
+		return eString;
+	}
+
+	public void seteString(String eString) {
+		this.eString = eString;
+	}
 	
 
+	
+	public Equal(String s){
+		this.seteString(s);
+	}
+	
 }

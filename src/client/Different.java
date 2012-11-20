@@ -1,6 +1,6 @@
 package client;
 
-public abstract class Different extends Rule {
+public class Different extends Rule {
 
 	String dString;
 	
@@ -9,7 +9,19 @@ public abstract class Different extends Rule {
 		
 		return s!=dString;
 	}
+
+
+	public String getdString() {
+		return dString;
+	}
+
+
+	public void setdString(String dString) {
+		this.dString = dString;
+	}
 	
-	
+	public Different(String s){
+		this.setdString(s);
+	}
 	
 }

@@ -1,7 +1,8 @@
 package client;
 
+import java.util.ArrayList;
+
 public class CompoundOr extends Compound{
-	
 	
 public boolean satisfy(String s){
 		
@@ -9,7 +10,10 @@ public boolean satisfy(String s){
 		
 	}
 	
-	
+public CompoundOr(ArrayList<Rule> r) {
+	super(r);
+	// TODO Auto-generated constructor stub
+}	
 	
 
 }

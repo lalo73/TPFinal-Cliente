@@ -15,4 +15,9 @@ public abstract class Compound extends Rule{
 	}
 	
 	
+	public Compound(ArrayList<Rule> r){
+		this.setReglas(r);
+	}
+	
+	
 }
