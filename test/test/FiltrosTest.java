@@ -1,5 +1,7 @@
 package test;
 import static org.mockito.Mockito.*;
+import client;
+import client.Countain;
 
 
 
@@ -15,9 +17,24 @@ public class FiltrosTest {
 	when(e.getDate()).thenReturn("19/11/2012");
 	
 	public void setUp(){
-		Countain cont=Countain("Java");
+		//Si el sender contiene TPI marcar como leido
+		Countain cont=new Countain("TPI");
 	  	Sender s = new Sender();
 	  	MarkRead mark=new MarkRead();
+		Filter f1= new Filter(false,cont,s,mark);
+		
+		//Si la fecha es igual a 12/12/12 eliminar mail
+		Equal e=Equal("12/12/12");
+		Date d=new Date();
+		Delete d=new Delete();
+		Filter f2 = new Filter(false,e,d,d);
+		
+		//Si el subject es distinto a Java mover a carpeta spam
+		Different dif =new Different("Java");
+		Subject sub =new Subject();
+		MoveToFolder mtf = new MoveToFolder();
+		
+		//Regla compuesta and
 		
 		
 	}
