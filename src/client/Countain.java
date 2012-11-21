@@ -5,23 +5,22 @@ public class Countain extends Rule {
 	
 	String cString;
 	
-	public boolean satisfy(String s){
+	public boolean satisfy(IEmail e){
 		
-		return s.contains(cString);
+		return cString.contains(f.getField(e));
 	}
 	
-	public Countain(String s){
-		this.setcString(s);
-	}
-	
-
-
 	public String getcString() {
 		return cString;
 	}
 
 	public void setcString(String cString) {
 		this.cString = cString;
+	}
+	
+	public Countain(String s,Field f){
+		this.setcString(s);
+		this.setF(f);
 	}
 
 }

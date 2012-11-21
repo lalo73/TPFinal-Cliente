@@ -4,9 +4,9 @@ public class Equal extends Rule {
 	
 	String eString;
 	
-	public boolean satisfy(String s){
+	public boolean satisfy(IEmail e){
 		
-		return s.equals(eString);
+		return eString.equals(f.getField(e));
 	}
 
 	public String geteString() {
@@ -19,8 +19,9 @@ public class Equal extends Rule {
 	
 
 	
-	public Equal(String s){
+	public Equal(String s,Field f){
 		this.seteString(s);
+		this.setF(f);
 	}
 	
 }

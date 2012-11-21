@@ -5,9 +5,9 @@ public class Different extends Rule {
 	String dString;
 	
 	
-	public boolean satisfy(String s){
+	public boolean satisfy(IEmail e){
 		
-		return s!=dString;
+		return f.getField(e)!=dString;
 	}
 
 
@@ -20,8 +20,9 @@ public class Different extends Rule {
 		this.dString = dString;
 	}
 	
-	public Different(String s){
+	public Different(String s,Field f){
 		this.setdString(s);
+		this.setF(f);
 	}
 	
 	

@@ -4,13 +4,12 @@ public class Filter {
 
 	boolean exclusive;
     Rule rule;
-    Field field;
     Action action;
     
     
     public void filter(IEmail e,IClient c){
 	
-	if(rule.satisfy(field.getCampo(e))){
+	if(rule.satisfy()){
 		
 		action.act(e,c);}
 	}

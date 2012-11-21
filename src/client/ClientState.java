@@ -19,5 +19,9 @@ public abstract class ClientState{
 	public abstract void sendEmail(IClient client, IEmail e);
 	
 	public abstract IUser getUser(IClient client);
+	
+	public static void main(String[] args) {
+		System.out.println("Hello");
+	}
 
 }
