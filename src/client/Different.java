@@ -24,4 +24,6 @@ public class Different extends Rule {
 		this.setdString(s);
 	}
 	
+	
+	
 }
