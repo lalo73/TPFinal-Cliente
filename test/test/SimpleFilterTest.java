@@ -8,7 +8,7 @@ import org.junit.Test;
 import client.*;
 
 
-public class SimpleFiltrosTest {
+public class SimpleFilterTest {
 
 	public void setUp(){
 	
@@ -40,7 +40,7 @@ public class SimpleFiltrosTest {
 	
 	
 	
-	
+	//Escenarios 
 	
 	
 		//Si el sender contiene TPI marcar como leido
@@ -64,23 +64,7 @@ public class SimpleFiltrosTest {
 		MoveToFolder mtf = new MoveToFolder();
 		Filter f3 = new Filter(false,dif,mtf);
 		
-		//Compuesto AND - Devuelve True
-		Equal eq=new Equal("Tpi",s);
-		Countain coun =new Countain("Juegos",sub);
-		ArrayList<Rule>listrules =new ArrayList<Rule>();
-		listrules.add(eq);
-		listrules.add(coun);
-		CompoundAnd cAnd=new CompoundAnd(listrules);
-		Delete delete=new Delete();
-		Filter f4 =new Filter(false,cAnd,delete);
 		
-		
-		//Compuesto OR - Devuelve True
-		Date date = new Date();
-		Different diff= new Different("14/10/2011",date);
-		Sender sen = new Sender();
-		Equal eq = new Equal("GranDT",sen);
-		MoveToFolder move = new MoveToFolder(folder1);
 		
 		
 		
