@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class CompoundOr extends Compound{
 	
-public boolean satisfy(String s){
+public boolean satisfy(IEmail e){
 		
-		return this.getReglas().get(0).satisfy(s) | this.getReglas().get(1).satisfy(s);
+		return this.getReglas().get(0).satisfy(e) | this.getReglas().get(1).satisfy(e);
 		
 	}
 	

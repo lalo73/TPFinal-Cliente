@@ -9,7 +9,7 @@ public class Filter {
     
     public void filter(IEmail e,IClient c){
 	
-	if(rule.satisfy()){
+	if(rule.satisfy(e)){
 		
 		action.act(e,c);}
 	}
@@ -57,10 +57,9 @@ public void setAction(Action action) {
 
     
 
-public Filter(boolean exc,Rule r,Field f,Action a){
+public Filter(boolean exc,Rule r,Action a){
 	this.setExclusive(exc);
 	this.setRule(r);
-	this.setField(f);
 	this.setAction(a);
 }
 
