@@ -2,7 +2,9 @@ package test;
 
 import java.util.ArrayList;
 
-import client.*;
+import org.junit.Test;
+
+import src.client.*;
 
 
 public class CompoundFilterTest {
@@ -15,10 +17,12 @@ public class CompoundFilterTest {
 	
 	
 	//Mocks de Folder
-	Folder folder= mock(Folder.class);
-	when(folder.getName()).thenReturn("spam");
-	Folder folder1 = mock(Folder.class),
-	when(folder1.getName()).thenReturn("GranDt");
+	Folder spam= mock(Folder.class);
+	when(spam.getName()).thenReturn("spam");
+	Folder granDt = mock(Folder.class),
+	when(granDt.getName()).thenReturn("GranDt");
+	Folder bandejaDeEntrada= mock(Folder.class);
+	when(bandejaDeEntrada.getName()).thenReturn("BandejaDeEntrada");
 	
 	
 	//Mocks de Email
@@ -33,7 +37,7 @@ public class CompoundFilterTest {
 	Sender s = new Sender();
 	Equal eq=new Equal("Tpi",s);//Regla
 	Subject sub =new Subject();
-	Countain coun =new Countain("TrabajoPractico",sub);//Regla
+	Countain coun =new Countain("Trabajo",sub);//Regla
 	ArrayList<Rule>listrules =new ArrayList<Rule>();
 	listrules.add(eq);
 	listrules.add(coun);
@@ -57,7 +61,7 @@ public class CompoundFilterTest {
 	Sender send = new Sender();
 	Equal equ=new Equal("MarioBros",send);//Regla
 	Subject sub =new Subject();
-	Countain coun =new Countain("TrabajoPractico",sub);//Regla
+	Countain coun =new Countain("Tra",sub);//Regla
 	ArrayList<Rule>listrules =new ArrayList<Rule>();
 	listrules.add(eq);
 	listrules.add(coun);
@@ -66,9 +70,38 @@ public class CompoundFilterTest {
 	Filter f4 =new Filter(false,cAnd,delete);
 	
 	
+	
+	//Compuesto OR -Devuelve False
+	
+	Sender send1 = new Sender();
+	Equal equ1=new Equal("MarioBros",send1);//Regla
+	Subject sub1 =new Subject();
+	Countain coun1 =new Countain("Taringa",sub1);//Regla
+	ArrayList<Rule>listrules1 =new ArrayList<Rule>();
+	listrules.add(equ1);
+	listrules.add(coun1);
+	CompoundAnd cAnd1=new CompoundAnd(listrules1);
+	Delete delete1=new Delete();
+	Filter f5 =new Filter(false,cAnd1,delete1);
+	
+	
+	}
+	
+	@Test
+	public void testCompoundAnd(){
+	   assertEqual("El mail debe ser eliminado"false,client.includesEmail(email));
+	   assertTrue("El mail debe estar en la bandeja de entrada"client.contain(email,bandejaDeEntrada));
+	
 	}
 	
 	
+	@Test
+	public void testCompoundOr(){
+		assertTrue("El mail debe estar en la carpeta GranDr",client.contain(email,granDt));
+		assertTrue("El mail debe estar en bandeja de entrada"client.contain(email,bandejaDeEntrada));
+		
+		
+	}
 	
 	
 }

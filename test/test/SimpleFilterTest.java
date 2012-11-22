@@ -1,11 +1,11 @@
-package test;
+package test.test;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
 
-import client.*;
+import src.client.*;
 
 
 public class SimpleFilterTest {
@@ -49,7 +49,7 @@ public class SimpleFilterTest {
 	  	Countain cont=new Countain("Tpi",s);
 	  	MarkRead mark=new MarkRead();
 		Filter f1= new Filter(false,cont,mark);
-		f1.filter(email,cliente);
+		f1.filter(email,client);
 		
 		//Si la fecha es igual a 12/12/12 eliminar mail
 		Date d=new Date();
