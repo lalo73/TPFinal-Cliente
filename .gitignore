@@ -2,7 +2,6 @@
 
 # Package Files #
 
-*.project
 *.classpath
 *.jar
 *.war
