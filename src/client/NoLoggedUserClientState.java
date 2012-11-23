@@ -11,6 +11,7 @@ public class NoLoggedUserClientState extends ClientState {
 	public void logIn(IClient client, String user, String password, Server e,
 			IAccesType at) throws AlreadyLoggedException {
 		client.setLoggedUser(new User(user,password,e,at));
+		client.setClientState(new LoggedUserClientState());
 	}
 
 	@Override
