@@ -21,7 +21,7 @@ public class MoveToFolder extends Action {
 
 	public void act(IEmail e,IClient c){
 		
-	c.moveToFolder(e,getF());
+	c.addToFolder(e,getF());
 		
 	}
 	
