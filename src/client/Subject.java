@@ -5,7 +5,7 @@ public class Subject extends Field {
 	
 	public String getField(IEmail e){
 		
-		return e.getSubject();
+		return e.getHead().getSubject();
 	}
 
 }
