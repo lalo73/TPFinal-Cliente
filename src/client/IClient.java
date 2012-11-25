@@ -21,7 +21,7 @@ public interface IClient {
 
 	public void addList(String listName);
 
-	public void addToList(IContact c, String listName);
+	public void addToList(IPerson c, IList list);
 
 	public void remove(IContact c);
 
@@ -97,5 +97,7 @@ public interface IClient {
 	public ClientState getClientState();
 
 	public void setClientState(ClientState clientState);
+
+	void addToList(IContact c, String listName);
 
 }

@@ -3,39 +3,67 @@ package client;
 import server.Server;
 
 public class User implements IUser{
+	
+	private String name;
+	private String password;
+	private Server server;
+	private IAccesType accesType;
+	
 
-	public User(String user, String password, Server e, IAccesType at) {
-		// TODO Auto-generated constructor stub
+	public User(String userName, String password, Server server, IAccesType accesType) {
+		this.setName(userName);
+		this.setPassword(password);
+		this.setAccesType(accesType);
+		this.setServer(server);
+		
 	}
 
 	@Override
 	public boolean equals(IUser u) {
-		// TODO Auto-generated method stub
-		return false;
+		return (
+				this.getName().equals(u.getName()) && 
+				this.getPassword().equals(u.getPassword()) && 
+				this.getServer().equals(u.getServer())
+				);
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 	@Override
-	public void setName() {
-		// TODO Auto-generated method stub
-		
+	public void setName(String newName) {
+		name = newName;
 	}
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
+		return password;
 	}
 
 	@Override
-	public void setPassword() {
-		// TODO Auto-generated method stub
+	public void setPassword(String newPassword) {
+		password = newPassword;
 		
 	}
+
+	public Server getServer() {
+		return server;
+	}
+
+	public void setServer(Server server) {
+		this.server = server;
+	}
+
+	public IAccesType getAccesType() {
+		return accesType;
+	}
+
+	public void setAccesType(IAccesType accesType) {
+		this.accesType = accesType;
+	}
+	
+	
 
 }
