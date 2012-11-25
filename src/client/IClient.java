@@ -37,6 +37,10 @@ public interface IClient {
 	public void removeFrom(IFolder f, IEmail e);
 
 	public List<IFolder> getFolders();
+	
+	public boolean contains(IEmail e, IFolder f);
+	
+	public boolean includesEmail(IEmail e);
 
 	// Filters protocol
 	public void addFilter(Filter f);

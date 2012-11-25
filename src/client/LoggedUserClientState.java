@@ -16,7 +16,7 @@ public class LoggedUserClientState extends ClientState {
 
 	@Override
 	public void createList(IClient client, String listName) {
-		// TODO Auto-generated method stub
+		client.getFolders().add(new Folder(listName));
 
 	}
 
@@ -185,6 +185,12 @@ public class LoggedUserClientState extends ClientState {
 	public void filtrar(IClient c, List<IEmail> es) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean contains(Client client, IEmail e, IFolder f) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
