@@ -14,32 +14,25 @@ public class LoggedUserClientState extends ClientState {
 
 	}
 
-	@Override
 	public void createList(IClient client, String listName) {
-		// TODO Auto-generated method stub
+		client.getContancts().add(new ContactList(listName));
 
 	}
 
-	@Override
 	public IUser getUser(IClient client) {
-		// TODO Auto-generated method stub
-		return null;
+		return client.getLoggedUser();
 	}
 
-	@Override
 	public void logIn(IClient client, String user, String password, Server e, IAccesType at) throws AlreadyLoggedException {
 		throw new AlreadyLoggedException();
 	}
 
-	@Override
 	public void addToList(IClient client, IContact c, List<IContact> contacts) {
-		// TODO Auto-generated method stub
-		
+		contacts.add(c);
 	}
 
-	@Override
 	public List<IFolder> getFolders(IClient client) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -164,7 +157,8 @@ public class LoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void includes(IClient c, IEmail e) {
+	public boolean includes(IClient c, IEmail e) {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}
@@ -185,6 +179,12 @@ public class LoggedUserClientState extends ClientState {
 	public void filtrar(IClient c, List<IEmail> es) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean contains(Client client, IEmail e, IFolder f) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

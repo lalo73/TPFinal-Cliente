@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import src.client.*;
+import client.*;
 
 
 public class CompoundFilterTest {

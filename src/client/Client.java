@@ -15,6 +15,10 @@ public class Client implements IClient {
 	private List<Filter> filters;
 	private List<IEvent> events;
 	
+	public Client(){
+		this(new NoLoggedUserClientState());
+	}
+	
 
 	public Client(ClientState state) {
 		this.setClientState(state);
@@ -212,9 +216,22 @@ public class Client implements IClient {
 	public void setFilters(List<Filter> filters) {
 		this.filters = filters;
 	}
-	
-	
-	
-	
 
+	public boolean contains(IEmail e, IFolder f) {
+		
+		return this.getClientState().contains(this,e,f);
+	}
+
+	public boolean includesEmail(IEmail e) {
+
+		return this.getClientState().includes(this,e);
+	}
+
+
+	@Override
+	public void addToList(IPerson c, IList list) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

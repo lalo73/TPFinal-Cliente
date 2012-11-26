@@ -66,7 +66,7 @@ public abstract class ClientState {
 
 	public abstract void sendEmail(IClient c, IEmail e);
 
-	public abstract void includes(IClient c, IEmail e);
+	public abstract boolean includes(IClient c, IEmail e);
 
 	public abstract void remove(IClient c, IEmail e);
 
@@ -77,5 +77,7 @@ public abstract class ClientState {
 
 	// Protocolo interno de manejo de filtros
 	public abstract void filtrar(IClient c, List<IEmail> es);
+
+	public abstract boolean contains(Client client, IEmail e, IFolder f);
 
 }
