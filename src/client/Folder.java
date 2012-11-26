@@ -6,7 +6,7 @@ import exceptions.CannotFindEmailException;
 
 public class Folder implements IFolder {
       String folderName;
-      ArrayList<IEmail> email = new ArrayList<IEmail>();
+      ArrayList<IEmail> emails = new ArrayList<IEmail>();
       
       
 
@@ -18,12 +18,12 @@ public class Folder implements IFolder {
 		this.folderName = folderName;
 	}
 
-	public ArrayList<IEmail> getEmail() {
-		return email;
+	public ArrayList<IEmail> getEmails() {
+		return emails;
 	}
 
-	public void setEmail(ArrayList<IEmail> email) {
-		this.email = email;
+	public void setEmails(ArrayList<IEmail> email) {
+		this.emails = email;
 	}
 
 	
@@ -35,22 +35,22 @@ public class Folder implements IFolder {
 
 	@Override
 	public void add(IEmail e) {
-		this.getEmail().add(e);
+		this.getEmails().add(e);
 		
 	}
 
 	@Override
-	public void remove(IEmail e) {
-	   this.getEmail().remove(e);
+	public void removeEmail(IEmail e) {
+	   this.getEmails().remove(e);
 	}
 	@Override
 	public boolean includes(IEmail e) {
-		return this.getEmail().contains(e);
+		return this.getEmails().contains(e);
 		
 	}
 
 	public IEmail getEmail(IEmail e) throws Exception{
-		for (IEmail ie : this.getEmail()){
+		for (IEmail ie : this.getEmails()){
 			if (e == ie) {
 				return ie;
 			}
@@ -59,7 +59,7 @@ public class Folder implements IFolder {
 	}
 	
 	public void clearList(){
-		this.getEmail().removeAll(this.getEmail());
+		this.getEmails().removeAll(this.getEmails());
 	}
 }
 
