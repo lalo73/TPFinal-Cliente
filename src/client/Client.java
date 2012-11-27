@@ -3,6 +3,7 @@ package client;
 import java.util.List;
 
 import exceptions.AlreadyLoggedException;
+import exceptions.NoLoggedUserException;
 
 import server.Server;
 
@@ -24,28 +25,28 @@ public class Client implements IClient {
 		this.setClientState(state);
 	}
 
-	public void askEmails() {
+	public void askEmails() throws NoLoggedUserException {
 		this.getClientState().askEmails(this);
 
 	}
 
-	public void createList(String listName) {
+	public void createList(String listName) throws NoLoggedUserException {
 		this.getClientState().createList(this, listName);
 	}
 
-	public void addToList(IContact c, List<IContact> contacts) {
+	public void addToList(IContact c, List<IContact> contacts) throws NoLoggedUserException {
 		this.getClientState().addToList(this, c, contacts);
 	}
 
-	public List<IFolder> getFolders() {
+	public List<IFolder> getFolders() throws NoLoggedUserException {
 		return this.getClientState().getFolders(this);
 	}
 
-	public void sendEmail(IEmail e) {
+	public void sendEmail(IEmail e) throws NoLoggedUserException {
 		this.getClientState().sendEmail(this, e);
 	}
 
-	public IUser getUser() {
+	public IUser getUser() throws NoLoggedUserException {
 		return this.getClientState().getUser(this);
 	}
 
@@ -64,121 +65,121 @@ public class Client implements IClient {
 	}
 
 	@Override
-	public void logOut() {
+	public void logOut() throws NoLoggedUserException {
 		this.getClientState().logOut(this);
 		
 	}
 
 	@Override
-	public void addContact(String name, String userEmail) {
+	public void addContact(String name, String userEmail) throws NoLoggedUserException {
 		
 		this.getClientState().addContact(this, name, userEmail);
 	}
 
 	@Override
-	public void addList(String listName) {
+	public void addList(String listName) throws NoLoggedUserException {
 		this.getClientState().addList(this, listName);
 		
 	}
 
 	@Override
-	public void addToList(IContact c, String listName) {
+	public void addToList(IContact c, String listName) throws NoLoggedUserException {
 		this.getClientState().addToList(this,c,listName);
 	}
 
 	@Override
-	public void remove(IContact c) {
+	public void remove(IContact c) throws NoLoggedUserException {
 		this.getClientState().remove(this,c);
 	}
 
 	@Override
-	public void includes(IContact c) {
+	public void includes(IContact c) throws NoLoggedUserException {
 		this.getClientState().includes(this,c);
 		
 	}
 
 	@Override
-	public void addFolder(String name) {
+	public void addFolder(String name) throws NoLoggedUserException {
 		this.getClientState().addFolder(this, name);
 	}
 
 	@Override
-	public void remove(IFolder f) {
+	public void remove(IFolder f) throws NoLoggedUserException {
 		this.getClientState().remove(this, f);
 	}
 
 	@Override
-	public void addToFolder(IFolder f, IEmail e) {
+	public void addToFolder(IFolder f, IEmail e) throws NoLoggedUserException {
 		this.getClientState().addToFolder(this, f, e);
 	}
 
 	@Override
-	public void removeFrom(IFolder f, IEmail e) {
+	public void removeFrom(IFolder f, IEmail e) throws NoLoggedUserException {
 		this.getClientState().removeFrom(this, f, e);
 	}
 
 	@Override
-	public void addFilter(Filter f) {
+	public void addFilter(Filter f) throws NoLoggedUserException {
 		this.getClientState().addFilter(this, f);
 	}
 
 	@Override
-	public void addFilter(Filter f, boolean exclusive) {
+	public void addFilter(Filter f, boolean exclusive) throws NoLoggedUserException {
 		this.getClientState().addFilter(this, f, exclusive);
 	}
 
 	@Override
-	public void remove(Filter f) {
+	public void remove(Filter f) throws NoLoggedUserException {
 		this.getClientState().remove(this, f);
 	}
 
 	@Override
-	public List<Filter> getFilters() {
+	public List<Filter> getFilters() throws NoLoggedUserException {
 		return this.getClientState().getFilters(this);
 	}
 
 	@Override
-	public boolean isExclusive(Filter f) {
+	public boolean isExclusive(Filter f) throws NoLoggedUserException {
 		return this.getClientState().isExclusive(this, f);
 	}
 
 	@Override
-	public void makeEmail(IHeader h, IBody b, IAttachment a) {
+	public void makeEmail(IHeader h, IBody b, IAttachment a) throws NoLoggedUserException {
 		this.getClientState().makeEmail(this, h, b, a);
 	}
 
 	@Override
-	public void makeEmail(IHeader h, IBody b) {
+	public void makeEmail(IHeader h, IBody b) throws NoLoggedUserException {
 		this.getClientState().makeEmail(this, h, b);
 	}
 
 	@Override
-	public void makeEmail(IHeader h, IAttachment a) {
+	public void makeEmail(IHeader h, IAttachment a) throws NoLoggedUserException {
 		this.getClientState().makeEmail(this, h, a);	
 		}
 
 	@Override
-	public void makeEmail(IHeader h) {
+	public void makeEmail(IHeader h) throws NoLoggedUserException {
 		this.getClientState().makeEmail(this, h);
 	}
 
 	@Override
-	public void includes(IEmail e) {
+	public void includes(IEmail e) throws NoLoggedUserException {
 		this.getClientState().includes(this, e);
 	}
 
 	@Override
-	public void remove(IEmail e) {
+	public void remove(IEmail e) throws NoLoggedUserException {
 		this.getClientState().remove(this, e);
 	}
 
 	@Override
-	public void isReaded(IEmail e) {
+	public void isReaded(IEmail e) throws NoLoggedUserException {
 		this.getClientState().isReaded(this, e);
 	}
 
 	@Override
-	public void filtrar(List<IEmail> es) {
+	public void filtrar(List<IEmail> es) throws NoLoggedUserException {
 		this.getClientState().filtrar(this, es);
 	}
 	/**
@@ -217,12 +218,12 @@ public class Client implements IClient {
 		this.filters = filters;
 	}
 
-	public boolean contains(IEmail e, IFolder f) {
+	public boolean contains(IEmail e, IFolder f) throws NoLoggedUserException {
 		
 		return this.getClientState().contains(this,e,f);
 	}
 
-	public boolean includesEmail(IEmail e) {
+	public boolean includesEmail(IEmail e) throws NoLoggedUserException {
 
 		return this.getClientState().includes(this,e);
 	}
@@ -230,8 +231,7 @@ public class Client implements IClient {
 
 	@Override
 	public void addToList(IPerson c, IList list) {
-		// TODO Auto-generated method stub
-		
+		list.add(c);
 	}
 	
 }

@@ -3,6 +3,7 @@ package client;
 import java.util.List;
 
 import exceptions.AlreadyLoggedException;
+import exceptions.NoLoggedUserException;
 
 import server.Server;
 
@@ -11,70 +12,70 @@ public interface IClient {
 	public void logIn(String user, String password, Server e, IAccesType at)
 			throws AlreadyLoggedException;
 
-	public void logOut();
+	public void logOut() throws NoLoggedUserException;
 
 	// give emails protocol
-	public void askEmails();
+	public void askEmails() throws NoLoggedUserException;
 
 	// people and people list protocol
-	public void addContact(String name, String userEmail);
+	public void addContact(String name, String userEmail) throws NoLoggedUserException;
 
-	public void addList(String listName);
+	public void addList(String listName) throws NoLoggedUserException;
 
 	public void addToList(IPerson c, IList list);
 
-	public void remove(IContact c);
+	public void remove(IContact c) throws NoLoggedUserException;
 
-	public void includes(IContact c);
+	public void includes(IContact c) throws NoLoggedUserException;
 
 	// folders protocol
-	public void addFolder(String name);
+	public void addFolder(String name) throws NoLoggedUserException;
 
-	public void remove(IFolder f);
+	public void remove(IFolder f) throws NoLoggedUserException;
 
-	public void addToFolder(IFolder f, IEmail e);
+	public void addToFolder(IFolder f, IEmail e) throws NoLoggedUserException;
 
-	public void removeFrom(IFolder f, IEmail e);
+	public void removeFrom(IFolder f, IEmail e) throws NoLoggedUserException;
 
-	public List<IFolder> getFolders();
+	public List<IFolder> getFolders() throws NoLoggedUserException;
 	
-	public boolean contains(IEmail e, IFolder f);
+	public boolean contains(IEmail e, IFolder f) throws NoLoggedUserException;
 	
-	public boolean includesEmail(IEmail e);
+	public boolean includesEmail(IEmail e) throws NoLoggedUserException;
 
 	// Filters protocol
-	public void addFilter(Filter f);
+	public void addFilter(Filter f) throws NoLoggedUserException;
 
-	public void addFilter(Filter f, boolean exclusive);
+	public void addFilter(Filter f, boolean exclusive) throws NoLoggedUserException;
 
-	public void remove(Filter f);
+	public void remove(Filter f) throws NoLoggedUserException;
 
-	public List<Filter> getFilters();
+	public List<Filter> getFilters() throws NoLoggedUserException;
 
-	public boolean isExclusive(Filter f);
+	public boolean isExclusive(Filter f) throws NoLoggedUserException;
 
 	// Emails protocol
-	public void makeEmail(IHeader h, IBody b, IAttachment a);
+	public void makeEmail(IHeader h, IBody b, IAttachment a) throws NoLoggedUserException;
 
-	public void makeEmail(IHeader h, IBody b);
+	public void makeEmail(IHeader h, IBody b) throws NoLoggedUserException;
 
-	public void makeEmail(IHeader h, IAttachment a);
+	public void makeEmail(IHeader h, IAttachment a) throws NoLoggedUserException;
 
-	public void makeEmail(IHeader h);
+	public void makeEmail(IHeader h) throws NoLoggedUserException;
 
-	public void sendEmail(IEmail e);
+	public void sendEmail(IEmail e) throws NoLoggedUserException;
 
-	public void includes(IEmail e);
+	public void includes(IEmail e) throws NoLoggedUserException;
 
-	public void remove(IEmail e);
+	public void remove(IEmail e) throws NoLoggedUserException;
 
-	public void isReaded(IEmail e);
+	public void isReaded(IEmail e) throws NoLoggedUserException;
 
 	// User protocol
-	public IUser getUser();
+	public IUser getUser() throws NoLoggedUserException;
 
 	// internal filter protocol
-	public void filtrar(List<IEmail> es);
+	public void filtrar(List<IEmail> es) throws NoLoggedUserException;
 
 	// Getters and setters
 
@@ -98,6 +99,6 @@ public interface IClient {
 
 	public void setClientState(ClientState clientState);
 
-	void addToList(IContact c, String listName);
+	void addToList(IContact c, String listName) throws NoLoggedUserException;
 
 }
