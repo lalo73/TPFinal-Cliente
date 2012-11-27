@@ -17,5 +17,11 @@ public class ClientEmailAttachment {
 	public void setFile(String file) {
 		this.file = file;
 	}
+	
+	public ClientEmailAttachment(String fileName, String file) {
+		super();
+		this.fileName = fileName;
+		this.file = file;
+	}
 }
 	
