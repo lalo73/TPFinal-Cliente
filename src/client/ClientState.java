@@ -15,7 +15,7 @@ public abstract class ClientState {
 
 	public abstract void logOut(Client client) throws NoLoggedUserException;
 
-	// Protocolo de manejo de personas o lista de personas
+	// person or person list protocol
 	public abstract void createList(IClient client, String listName) throws NoLoggedUserException;
 
 	public abstract void addToList(IClient client, IContact c,
@@ -31,7 +31,7 @@ public abstract class ClientState {
 
 	public abstract void includes(IClient c, IContact cn) throws NoLoggedUserException;
 
-	// Protocolo de manejo de carpetas
+	// folder protocol
 	public abstract void addFolder(IClient c, String name) throws NoLoggedUserException;
 
 	public abstract void remove(IClient c, IFolder f) throws NoLoggedUserException;
@@ -42,7 +42,7 @@ public abstract class ClientState {
 
 	public abstract List<IFolder> getFolders(IClient c) throws NoLoggedUserException;
 
-	// Protocolo de manejo de filtros
+	// filters protocol
 	public abstract void addFilter(IClient c, Filter f) throws NoLoggedUserException;
 
 	public abstract void addFilter(IClient c, Filter f, boolean exclusive) throws NoLoggedUserException;
@@ -53,7 +53,7 @@ public abstract class ClientState {
 
 	public abstract boolean isExclusive(IClient c, Filter f) throws NoLoggedUserException;
 
-	// Protocolo de manejo de Emails
+	// email protocol
 
 	public abstract void askEmails(IClient client) throws NoLoggedUserException;
 

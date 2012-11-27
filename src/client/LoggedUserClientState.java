@@ -10,7 +10,7 @@ public class LoggedUserClientState extends ClientState {
 
 	@Override
 	public void askEmails(IClient client) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
