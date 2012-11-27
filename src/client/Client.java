@@ -1,5 +1,18 @@
 package client;
 
+import interfaces.IAccesType;
+import interfaces.IAttachment;
+import interfaces.IBody;
+import interfaces.IClient;
+import interfaces.IContact;
+import interfaces.IEmail;
+import interfaces.IEvent;
+import interfaces.IFolder;
+import interfaces.IHeader;
+import interfaces.IList;
+import interfaces.IPerson;
+import interfaces.IUser;
+
 import java.util.List;
 
 import exceptions.AlreadyLoggedException;

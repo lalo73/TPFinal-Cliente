@@ -1,13 +1,25 @@
 package client;
 
-public class MarkRead extends Action {
+import interfaces.IClient;
+import interfaces.IEmail;
 
-	public void act(IEmail e,IClient c){
+public class MarkRead extends Action {
+	
+	boolean exclusive;
+
+	public boolean act(IEmail e,IClient c){
 		
 		e.setReaded(true);
+		return false;
 		
 	  }
-	
-	
+
+	public boolean exclusive() {
+		return exclusive;
+	}
+
+	public void setExclusive(boolean exclusive) {
+		this.exclusive = exclusive;
+	}
 	
 }

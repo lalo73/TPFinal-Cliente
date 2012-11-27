@@ -1,5 +1,5 @@
-package client;
-import client.IEmail;
+package interfaces;
+import interfaces.IEmail;
 
 
 

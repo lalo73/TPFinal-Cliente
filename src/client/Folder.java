@@ -1,5 +1,8 @@
 package client;
 
+import interfaces.IEmail;
+import interfaces.IFolder;
+
 import java.util.*;
 
 import exceptions.CannotFindEmailException;

@@ -1,5 +1,7 @@
 package client;
 
+import interfaces.IEmail;
+
 import java.util.ArrayList;
 
 public class CompoundOr extends Compound{

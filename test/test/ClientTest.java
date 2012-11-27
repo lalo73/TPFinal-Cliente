@@ -1,13 +1,14 @@
 package test;
 
+import interfaces.IAccesType;
+import interfaces.IClient;
+
 import org.junit.Test;
 
 import server.Server;
 
 import client.Client;
 import client.ClientState;
-import client.IAccesType;
-import client.IClient;
 import static org.mockito.Mockito.*;
 
 public class ClientTest {

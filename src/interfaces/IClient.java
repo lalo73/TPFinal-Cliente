@@ -1,6 +1,9 @@
-package client;
+package interfaces;
 
 import java.util.List;
+
+import client.ClientState;
+import client.Filter;
 
 import exceptions.AlreadyLoggedException;
 import exceptions.NoLoggedUserException;

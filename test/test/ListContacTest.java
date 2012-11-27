@@ -1,12 +1,13 @@
 package test;
 
+import interfaces.IEmail;
+import interfaces.IList;
+import interfaces.IPerson;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import client.ContactList;
-import client.IEmail;
-import client.IList;
-import client.IPerson;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 

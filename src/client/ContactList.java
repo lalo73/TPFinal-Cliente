@@ -1,5 +1,9 @@
 package client;
 
+import interfaces.IContact;
+import interfaces.IEmail;
+import interfaces.IList;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

@@ -1,5 +1,8 @@
 package client;
 
+import interfaces.IHeader;
+import interfaces.IUser;
+
 import java.util.List;
 
 import server.Server;

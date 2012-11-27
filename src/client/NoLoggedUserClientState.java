@@ -1,5 +1,15 @@
 package client;
 
+import interfaces.IAccesType;
+import interfaces.IAttachment;
+import interfaces.IBody;
+import interfaces.IClient;
+import interfaces.IContact;
+import interfaces.IEmail;
+import interfaces.IFolder;
+import interfaces.IHeader;
+import interfaces.IUser;
+
 import java.util.List;
 
 import server.Server;

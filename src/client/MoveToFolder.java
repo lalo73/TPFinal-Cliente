@@ -1,5 +1,7 @@
 package client;
 
+import interfaces.IClient;
+import interfaces.IEmail;
 import exceptions.NoLoggedUserException;
 
 public class MoveToFolder extends Action {

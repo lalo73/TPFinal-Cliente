@@ -1,9 +1,10 @@
 package test;
 
+import interfaces.IAccesType;
+import interfaces.IUser;
+
 import org.junit.Test;
 
-import client.IAccesType;
-import client.IUser;
 import client.User;
 
 import server.Server;

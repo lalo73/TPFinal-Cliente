@@ -1,5 +1,7 @@
 package client;
 
+import interfaces.IEmail;
+
 public class Sender extends Field {
 
 	public String getField(IEmail e){

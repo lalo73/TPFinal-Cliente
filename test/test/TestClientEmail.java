@@ -1,10 +1,14 @@
-package client;
+package test;
 
 
 import static org.junit.Assert.*;
 import java.util.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import client.ClientEmail;
+import client.ClientEmailAttachment;
+import client.ClientEmailHead;
 import static org.mockito.Mockito.*;
 
 public class TestClientEmail {

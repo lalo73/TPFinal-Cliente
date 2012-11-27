@@ -1,5 +1,7 @@
 package client;
 
+import interfaces.IEmail;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 

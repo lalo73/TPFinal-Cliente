@@ -1,11 +1,15 @@
-package test;
+
+
+import client.*;
+
+import interfaces.IClient;
+import interfaces.IEmail;
+import interfaces.IHeader;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
-
-import client.*;
-
+import static org.mockito.Mockito.*;
 
 public class CompoundFilterTest {
 
@@ -13,7 +17,7 @@ public class CompoundFilterTest {
 	
 	//Mock de Cliente
 	IClient client=mock(Client.class);
-	when(client.getFolders()).thenReturn(folder);
+	when(client.getFolders()).thenReturn(spam);
 	
 	
 	//Mocks de Folder
@@ -24,12 +28,17 @@ public class CompoundFilterTest {
 	Folder bandejaDeEntrada= mock(Folder.class);
 	when(bandejaDeEntrada.getName()).thenReturn("BandejaDeEntrada");
 	
+	//Mock de Header
+	IHeader head =mock(Header.class);
+	when(head.getSubject()).thenReturn("TrabajoPractico");
+	when(head.getSender()).thenReturn("TPI");
+	when(head.getDate()).thenReturn("19/11/2012");
+	
+	
 	
 	//Mocks de Email
 	IEmail email=mock(Email.class);//Email 
-	when(email.getSubject()).thenReturn("TrabajoPractico");
-	when(email.getSender()).thenReturn("TPI");
-	when(email.getDate()).thenReturn("19/11/2012");
+	when(email.getHeader()).thenReturn(head);
 	when(email.isReaded()).thenReturn(false);
 	
 	

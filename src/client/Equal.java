@@ -1,27 +1,29 @@
 package client;
 
+import interfaces.IEmail;
+
 public class Equal extends Rule {
 	
-	String eString;
+	public Equal(String s, Field f) {
+		super(s, f);
+	}
+
+	String string;
 	
 	public boolean satisfy(IEmail e){
 		
-		return eString.equals(f.getField(e));
+		return string.equals(f.getField(e));
 	}
 
 	public String geteString() {
-		return eString;
+		return string;
 	}
 
 	public void seteString(String eString) {
-		this.eString = eString;
+		this.string = eString;
 	}
 	
 
 	
-	public Equal(String s,Field f){
-		this.seteString(s);
-		this.setF(f);
-	}
-	
+
 }

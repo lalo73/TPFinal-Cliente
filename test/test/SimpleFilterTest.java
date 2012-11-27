@@ -1,11 +1,17 @@
-package test.test;
+
+
 import static org.mockito.Mockito.*;
+
+import interfaces.IClient;
+import interfaces.IEmail;
+import interfaces.IFolder;
+import interfaces.IHeader;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
 
-import src.client.*;
+import client.*;
 
 
 public class SimpleFilterTest {
@@ -19,24 +25,32 @@ public class SimpleFilterTest {
 	
 	
 	//Mocks de Folder
-	Folder folder= mock(Folder.class);
+	IFolder folder= mock(Folder.class);
 	when(folder.getName()).thenReturn("spam");
-	Folder folder1 = mock(Folder.class),
+	IFolder folder1 = mock(Folder.class);
 	when(folder1.getName()).thenReturn("GranDt");
 	
-	
-	//Mocks de Email
-	IEmail email=mock(Email.class);//Email 1
+	//Mocks de header 
+	IHeader head =mock(Header.class);//Para email
 	when(email.getSubject()).thenReturn("TrabajoPractico");
 	when(email.getSender()).thenReturn("TPI");
 	when(email.getDate()).thenReturn("19/11/2012");
+	
+	
+	IHeader otroHead=mock(Header.class);//Para otroEmail
+	when(otroHead.getSubject()).thenReturn("Puntaje");
+	when(otroHead.getSender()).thenReturn("GranDt");
+	when(otroHead.getDate()).thenReturn("12/12/2012");
+	
+	//Mocks de Email
+	IEmail email=mock(Email.class);//Email 1
+	when(email.getHeader()).thenReturn(head);
 	when(email.isReaded()).thenReturn(false);
 	
-	IEmail email=mock(Email.class);//Email 2
-	when(email.getSubject()).thenReturn("Puntaje");
-	when(email.getSender()).thenReturn("GranDt");
-	when(email.getDate()).thenReturn("19/11/2012");
-	when(email.isReaded()).thenReturn(false);
+	
+	IEmail otroEmail=mock(Email.class);//Email 2
+	when(email.getHeader()).thenReturn(otroHead);
+	when(otroEmail.isReaded()).thenReturn(false);
 	
 	
 	
@@ -56,13 +70,14 @@ public class SimpleFilterTest {
 		Equal e=new Equal("12/12/12",d);
 		Delete del=new Delete();
 		Filter f2 = new Filter(false,d,del);
-		f2.filter(email,client);
+		f2.filter(otroEmail,client);
 		
 		//Si el subject es distinto a Java mover a carpeta spam
 		Subject sub =new Subject();
 		Different dif =new Different("Java",sub);
 		MoveToFolder mtf = new MoveToFolder();
 		Filter f3 = new Filter(false,dif,mtf);
+		f3.filter(email,client);
 		
 		
 		
@@ -79,8 +94,5 @@ public class SimpleFilterTest {
 	assertTrue("la carpeta spam debe contener el mail",client.contain(email,folder));
 	
 	
-	
-	
-	
-	
+	}
 }

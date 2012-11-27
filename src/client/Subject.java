@@ -1,5 +1,7 @@
 package client;
 
+import interfaces.IEmail;
+
 public class Subject extends Field {
 	
 	

@@ -1,30 +1,36 @@
 package client;
 
+import interfaces.IEmail;
+
 public class Different extends Rule {
 
-	String dString;
+	public Different(String s, Field f) {
+		super(s, f);
+		
+	}
+
+
+	String string;
 	
 	
 	public boolean satisfy(IEmail e){
 		
-		return f.getField(e)!=dString;
+		return f.getField(e)!=string;
 	}
 
 
 	public String getdString() {
-		return dString;
+		return string;
 	}
 
 
 	public void setdString(String dString) {
-		this.dString = dString;
-	}
-	
-	public Different(String s,Field f){
-		this.setdString(s);
-		this.setF(f);
+		this.string = dString;
 	}
 	
 	
+	}
 	
-}
+	
+	
+

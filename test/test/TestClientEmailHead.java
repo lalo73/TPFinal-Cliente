@@ -1,7 +1,9 @@
-package client;
+package test;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import client.ClientEmailHead;
 import static org.junit.Assert.*;
 import java.util.Calendar;
 

@@ -1,28 +1,41 @@
 package client;
 
+import interfaces.IClient;
+import interfaces.IEmail;
 import exceptions.NoLoggedUserException;
 
 public class Filter {
 
-	boolean exclusive;
+
 	Rule rule;
 	Action action;
+	
 
-	public void filter(IEmail e, IClient c) throws NoLoggedUserException {
+	
+	public boolean getExclusive(){
+		
+		return this.getAction().exclusive();
+		
+	}
+	
+	public void setExclusive(boolean bool) throws Exception{
+		this.getAction().setExclusive(bool);
+		
+	}
+	
 
+	public boolean filter(IEmail e, IClient c) throws NoLoggedUserException {
+
+		boolean movedFromfolder= false;
+		
 		if (rule.satisfy(e)) {
 
-			action.act(e, c);
+			movedFromfolder= movedFromfolder || action.act(e, c);
 		}
+		return movedFromfolder;
 	}
 
-	public boolean isExclusive() {
-		return exclusive;
-	}
 
-	public void setExclusive(boolean exclusive) {
-		this.exclusive = exclusive;
-	}
 
 	public Rule getRule() {
 		return rule;
@@ -41,7 +54,7 @@ public class Filter {
 	}
 
 	public Filter(boolean exc, Rule r, Action a) {
-		this.setExclusive(exc);
+		
 		this.setRule(r);
 		this.setAction(a);
 	}

@@ -1,5 +1,8 @@
 package client;
 
+import interfaces.IEmail;
+import interfaces.IPerson;
+
 import java.util.ArrayList;
 import java.util.List;
 

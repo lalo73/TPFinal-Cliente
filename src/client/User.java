@@ -1,5 +1,7 @@
 package client;
 
+import interfaces.IAccesType;
+import interfaces.IUser;
 import server.Server;
 
 public class User implements IUser{

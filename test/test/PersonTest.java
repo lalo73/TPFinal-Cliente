@@ -1,10 +1,11 @@
 package test;
 
+import interfaces.IEmail;
+import interfaces.IPerson;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import client.IEmail;
-import client.IPerson;
 import client.Person;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
