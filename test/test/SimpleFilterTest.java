@@ -89,6 +89,9 @@ public class SimpleFilterTest {
 	@Test
 	public void test(){
 	
+		
+		
+		
 	assertTrue("el email debe estar marcado como leido",email.isReaded());
 	assertEquals("el mail no debe estar",false,includesEmail(email));
 	assertTrue("la carpeta spam debe contener el mail",client.contain(email,folder));

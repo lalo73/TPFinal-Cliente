@@ -17,6 +17,7 @@ public abstract class Rule {
 	public abstract boolean satisfy(IEmail e);
 
 	public Rule(String s,Field f){
+		this.setString(s);
 		this.setF(f);
 	}
 }
