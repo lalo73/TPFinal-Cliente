@@ -11,7 +11,7 @@ import exceptions.NoLoggedUserException;
 public interface IAccesType {
 
 	public List<IEmail> askEmails(IClient cl, boolean delete)
-			throws CannotFindUserException;
+			throws CannotFindUserException, Exception;
 
 	public void delete(IClient client, IHeader header) throws NoLoggedUserException, CannotFindEmailException, Exception;
 

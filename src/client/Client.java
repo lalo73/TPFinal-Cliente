@@ -351,4 +351,9 @@ public class Client implements IClient {
 		this.smtp = smtp;
 	}
 
+	public int sendNotifySMS(int i, String string) {
+		// TODO Auto-generated method stub
+		//lalo tiene que completar
+	}
+
 }

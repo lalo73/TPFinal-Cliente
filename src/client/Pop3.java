@@ -22,7 +22,7 @@ import server.ServerEmailHead;
 public class Pop3 implements IAccesType {
 
 	@Override
-	public List<IEmail> askEmails(IClient cl,boolean delete) throws CannotFindUserException {
+	public List<IEmail> askEmails(IClient cl,boolean delete) throws Exception {
 		IUser user = cl.getLoggedUser();
 		List<ServerEmail> server_emails = user.getServer().sendEmailWithPOP3(user.getName(), delete);
 		
