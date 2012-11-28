@@ -30,7 +30,7 @@ public class Pop3 implements IAccesType {
 
 	@Override
 	public void delete(IClient client, IHeader header) {
-		// TODO Auto-generated method stub
+
 		
 	}
 
