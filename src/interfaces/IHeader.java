@@ -4,10 +4,12 @@ import java.util.Calendar;
 
 public interface IHeader {
 
-	String getSender();
+	public String getSender();
 
-	String getSubject();
+	public String getSubject();
 
-	Calendar getDate();
+	public Calendar getDate();
+	
+	public String getReciver();
 
 }

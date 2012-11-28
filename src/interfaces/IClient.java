@@ -76,7 +76,7 @@ public interface IClient {
 
 	public void sendEmail(IEmail e) throws NoLoggedUserException;
 	
-	public boolean sendMessage(int number,String text);
+	public boolean sendMessage(int number,String text) throws NoLoggedUserException;
 
 	public void includes(IEmail e) throws NoLoggedUserException;
 
@@ -96,7 +96,7 @@ public interface IClient {
 
 	public List<IContact> getContancts();
 	
-	public List<IList> getLists();
+	public List<IList> getLists() throws NoLoggedUserException;
 
 	public void setContancts(List<IContact> contancts);
 

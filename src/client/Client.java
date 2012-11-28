@@ -69,7 +69,7 @@ public class Client implements IClient {
 		this.getClientState().sendEmail(this, e);
 	}
 
-	public boolean sendMessage(int number, String text) {
+	public boolean sendMessage(int number, String text) throws NoLoggedUserException {
 		return this.getClientState().sendMessage(this, number, text);
 	}
 
@@ -286,7 +286,7 @@ public class Client implements IClient {
 
 	}
 
-	public List<IEmail> getEmails() {
+	public List<IEmail> getEmails() throws NoLoggedUserException {
 
 		return this.getClientState().getEmails(this);
 	}
@@ -322,7 +322,7 @@ public class Client implements IClient {
 	}
 
 	@Override
-	public List<IList> getLists() {
+	public List<IList> getLists() throws NoLoggedUserException {
 		return this.getClientState().getLists(this);
 	}
 

@@ -2,7 +2,6 @@ package client;
 
 import interfaces.IAccesType;
 import interfaces.IAttachment;
-import interfaces.IBody;
 import interfaces.IClient;
 import interfaces.IContact;
 import interfaces.IEmail;
@@ -27,7 +26,8 @@ public class NoLoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void createList(IClient cl, String listName) throws NoLoggedUserException {
+	public void createList(IClient cl, String listName)
+			throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 
 	}
@@ -49,7 +49,7 @@ public class NoLoggedUserClientState extends ClientState {
 
 	@Override
 	public void logIn(IClient cl, String user, String password, Server e,
-			IAccesType at){
+			IAccesType at) {
 		cl.setLoggedUser(new User(user, password, e, at));
 		cl.setClientState(new LoggedUserClientState());
 	}
@@ -60,17 +60,14 @@ public class NoLoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void addContact(IClient cl, String name, String userEmail) throws NoLoggedUserException {
+	public void addContact(IClient cl, String name, String userEmail)
+			throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
 	@Override
-	public void addList(IClient cl, String listName) throws NoLoggedUserException {
-		throw new NoLoggedUserException();
-	}
-
-	@Override
-	public void addToList(IClient cl, IContact c, String listName) throws NoLoggedUserException {
+	public void addList(IClient cl, String listName)
+			throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
@@ -95,22 +92,19 @@ public class NoLoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void addToFolder(IClient cl, IFolder f, IEmail e) throws NoLoggedUserException {
+	public void addToFolder(IClient cl, IFolder f, IEmail e)
+			throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
 	@Override
-	public void removeFrom(IClient cl, IFolder f, IEmail e) throws NoLoggedUserException {
+	public void removeFrom(IClient cl, IFolder f, IEmail e)
+			throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
 	@Override
 	public void addFilter(IClient cl, Filter f) throws NoLoggedUserException {
-		throw new NoLoggedUserException();
-	}
-
-	@Override
-	public void addFilter(IClient cl, Filter f, boolean exclusive) throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
@@ -125,27 +119,19 @@ public class NoLoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public boolean isExclusive(IClient cl, Filter f) throws NoLoggedUserException {
+	public boolean isExclusive(IClient cl, Filter f)
+			throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
 	@Override
-	public void makeEmail(IClient cl, IHeader h, IBody b, IAttachment a) throws NoLoggedUserException {
+	public Email makeEmail(IClient cl, IHeader h, IAttachment a)
+			throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
 	@Override
-	public void makeEmail(IClient cl, IHeader h, IBody b) throws NoLoggedUserException {
-		throw new NoLoggedUserException();
-	}
-
-	@Override
-	public void makeEmail(IClient cl, IHeader h, IAttachment a) throws NoLoggedUserException {
-		throw new NoLoggedUserException();
-	}
-
-	@Override
-	public void makeEmail(IClient cl, IHeader h) throws NoLoggedUserException {
+	public IEmail makeEmail(IClient cl, IHeader h) throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
@@ -160,58 +146,103 @@ public class NoLoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void isReaded(IClient cl, IEmail e) throws NoLoggedUserException {
+	public boolean isReaded(IClient cl, IEmail e) throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
 	@Override
-	public void filtrar(IClient cl, List<IEmail> es) throws NoLoggedUserException {
+	public void filtrar(IClient cl, List<IEmail> es)
+			throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
 	@Override
-	public boolean contains(IClient cl, IEmail e, IFolder f) throws NoLoggedUserException {
+	public boolean contains(IClient cl, IEmail e, IFolder f)
+			throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
 	@Override
-	public void addToList(IClient cl, IPerson c, IList list) throws NoLoggedUserException {
+	public void addToList(IClient cl, IPerson c, IList list)
+			throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
 	@Override
-	public void removeFromList(IClient cl, IContact c, IList list) throws NoLoggedUserException {
+	public void removeFromList(IClient cl, IContact c, IList list)
+			throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
 	@Override
-	public void includesOnList(IClient cl, IContact c, IList list) throws NoLoggedUserException {
-		throw new NoLoggedUserException();
-	}
-
-	@Override
-	public IAccesType getAccesType() throws NoLoggedUserException {
+	public boolean includesOnList(IClient cl, IContact c, IList list)
+			throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
 	@Override
 	public void addToList(IClient cl, IContact c, IList contacts)
 			throws NoLoggedUserException {
-		// TODO Auto-generated method stub
-		
+		throw new NoLoggedUserException();
+
 	}
 
 	@Override
 	public void filtrar(IClient cl, IEmail es) throws NoLoggedUserException {
-		// TODO Auto-generated method stub
-		
+		throw new NoLoggedUserException();
+
 	}
 
 	@Override
 	public IEmail find(Client client, IHeader header)
 			throws CannotFindEmailException, NoLoggedUserException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new NoLoggedUserException();
+	}
+
+	@Override
+	public IEmail makeEmail(IClient cl, IHeader h, String b, IAttachment a)
+			throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+	}
+
+	@Override
+	public Email makeEmail(IClient cl, IHeader h, String b)
+			throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+	}
+
+	@Override
+	public IAccesType getAccesType(IClient cl) throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+	}
+
+	@Override
+	public List<IEmail> getEmails(Client client) throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+	}
+
+	@Override
+	public void makeFilter(IClient cl, Action a, Rule r, boolean exclusive)
+			throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+
+	}
+
+	@Override
+	public void addToList(Client cl, IContact c, String listName)
+			throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+
+	}
+
+	@Override
+	public List<IList> getLists(Client client) throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+	}
+
+	@Override
+	public boolean sendMessage(Client client, int number, String text) throws NoLoggedUserException {
+		throw new NoLoggedUserException();
 	}
 
 }

@@ -1,7 +1,6 @@
 package client;
 
 import interfaces.IContact;
-import interfaces.IEmail;
 import interfaces.IList;
 
 import java.util.ArrayList;
@@ -49,12 +48,12 @@ public class ContactList implements IList {
 	}
 	
 	@Override
-	public List<IEmail> getEmails() {
-		ArrayList<IEmail> allEmails = new ArrayList<IEmail>();
+	public List<String> getEmails() {
+		List<String> allEmails = new ArrayList<String>();
 		for (IContact contact : this.getContacts()){
 			allEmails.addAll(contact.getEmails());
 		}
-		Set<IEmail> setEmail = new HashSet<IEmail>(allEmails);
+		Set<String> setEmail = new HashSet<String>(allEmails);
 		allEmails.clear();
 		allEmails.addAll(setEmail);
 		return allEmails;

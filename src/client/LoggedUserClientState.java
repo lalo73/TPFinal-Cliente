@@ -127,7 +127,7 @@ public class LoggedUserClientState extends ClientState {
 	@Override
 	public void makeFilter(IClient cl, Action a, Rule r, boolean exclusive)
 			throws NoLoggedUserException {
-		this.addFilter(cl, new Filter(exclusive, r, a));
+		this.addFilter(cl, new Filter(r, a));
 
 	}
 
