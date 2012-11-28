@@ -8,5 +8,7 @@ public interface IList extends IContact{
 	public void remove(IContact c);
 	public List<IContact> getContacts();
 	public boolean includes(IContact c);
+	public boolean empty();
+	public int size();
 
 }

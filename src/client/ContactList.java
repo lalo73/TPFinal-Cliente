@@ -16,6 +16,11 @@ public class ContactList implements IList {
 
 	public ContactList(String listName) {
 		this.setName(listName);
+		this.setContacts(new ArrayList<IContact>());
+	}
+	
+	public void setContacts(List<IContact> new_contacts){
+		contacts = new_contacts; 
 	}
 
 	@Override
@@ -64,6 +69,16 @@ public class ContactList implements IList {
 	@Override
 	public void remove(IContact c) {
 		this.getContacts().remove(c);
+	}
+	
+	@Override
+	public boolean empty(){
+		return this.getContacts().isEmpty();
+	}
+	
+	@Override
+	public int size(){
+		return this.getContacts().size();
 	}
 
 }
