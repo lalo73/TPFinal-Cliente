@@ -8,8 +8,8 @@ import interfaces.IClient;
 import interfaces.IEmail;
 
 import client.Client;
-import client.ClientEmail;
-import client.ClientEmailHead;
+import client.Email;
+import client.Header;
 
 import client.Different;
 
@@ -44,13 +44,13 @@ public class DifferentTest {
 		
 		
 		//Mocks de header 
-		ClientEmailHead head =mock(ClientEmailHead.class);//Para email
+		Header head =mock(Header.class);//Para email
 		when(head.getSubject()).thenReturn("TrabajoPractico");
 		when(head.getSender()).thenReturn("TPI");
 		when(head.getDate()).thenReturn(d);
 		
 		//Mocks de Email
-		email=mock(ClientEmail.class);//Email 1
+		email=mock(Email.class);//Email 1
 		when(email.getHead()).thenReturn(head);
 		when(email.isReaded()).thenReturn(false);
 		
@@ -62,7 +62,7 @@ public class DifferentTest {
 		Subject sub =new Subject();
 		Different dif =new Different("Java",sub);
 		MoveToFolder mtf = new MoveToFolder(folder,false);
-		f3 = new Filter(false,dif,mtf);
+		f3 = new Filter(dif,mtf);
 		
 	
 	}

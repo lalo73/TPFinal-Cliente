@@ -4,10 +4,6 @@ import interfaces.IEmail;
 
 public class Different extends Rule {
 
-	public Different(String s, Field f) {
-		super(s, f);
-		
-	}
 
 
 	String string;
@@ -29,6 +25,11 @@ public class Different extends Rule {
 	}
 	
 	
+	public Different(String s, Field f) {
+		super(s, f);
+		
+	}
+
 	}
 	
 	

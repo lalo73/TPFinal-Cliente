@@ -53,7 +53,7 @@ public class Filter {
 		this.action = action;
 	}
 
-	public Filter(boolean exc, Rule r, Action a) {
+	public Filter(Rule r, Action a) {
 		
 		this.setRule(r);
 		this.setAction(a);
