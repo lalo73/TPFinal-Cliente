@@ -4,9 +4,12 @@ import java.util.List;
 
 import client.ClientState;
 import client.Filter;
+import client.SMS;
+import client.SMTP;
 
 import exception.CannotFindUserException;
 import exceptions.AlreadyLoggedException;
+import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
 
 import server.Server;
@@ -63,19 +66,21 @@ public interface IClient {
 	public boolean isExclusive(Filter f) throws NoLoggedUserException;
 
 	// Emails protocol
-	public void makeEmail(IHeader h, IBody b, IAttachment a) throws NoLoggedUserException;
+	public void makeEmail(IHeader h, String b, IAttachment a) throws NoLoggedUserException;
 
-	public void makeEmail(IHeader h, IBody b) throws NoLoggedUserException;
+	public void makeEmail(IHeader h, String b) throws NoLoggedUserException;
 
 	public void makeEmail(IHeader h, IAttachment a) throws NoLoggedUserException;
 
 	public void makeEmail(IHeader h) throws NoLoggedUserException;
 
 	public void sendEmail(IEmail e) throws NoLoggedUserException;
+	
+	public boolean sendMessage(int number,String text);
 
 	public void includes(IEmail e) throws NoLoggedUserException;
 
-	public void remove(IEmail e) throws NoLoggedUserException;
+	public void remove(IEmail e) throws NoLoggedUserException, CannotFindEmailException;
 
 	public void isReaded(IEmail e) throws NoLoggedUserException;
 
@@ -90,6 +95,8 @@ public interface IClient {
 	// Getters and setters
 
 	public List<IContact> getContancts();
+	
+	public List<IList> getLists();
 
 	public void setContancts(List<IContact> contancts);
 
@@ -112,5 +119,21 @@ public interface IClient {
 	public void addToList(IContact c, String listName) throws NoLoggedUserException;
 	
 	public List<IFolder> getRealFolders();
+
+	public IEmail find(IHeader header) throws CannotFindEmailException, NoLoggedUserException;
+
+	public List<Filter> getRealFiltesr();
+
+	public List<IEmail> getRealEmails();
+
+	public IUser getRealUser();
+
+	public SMS getSms();
+
+	public void setSms(SMS sms);
+
+	public SMTP getSmtp();
+
+	public void setSmtp(SMTP smtp);
 
 }

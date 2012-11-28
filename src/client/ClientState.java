@@ -2,7 +2,6 @@ package client;
 
 import interfaces.IAccesType;
 import interfaces.IAttachment;
-import interfaces.IBody;
 import interfaces.IClient;
 import interfaces.IContact;
 import interfaces.IEmail;
@@ -16,6 +15,7 @@ import java.util.List;
 
 import exception.CannotFindUserException;
 import exceptions.AlreadyLoggedException;
+import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
 
 import server.Server;
@@ -43,8 +43,6 @@ public abstract class ClientState  {
 
 	public abstract void addList(IClient cl, String listName) throws NoLoggedUserException;
 
-	public abstract void addToList(IClient cl, IContact c, String listName) throws NoLoggedUserException;
-
 	public abstract void remove(IClient cl, IContact c) throws NoLoggedUserException ;
 
 	public abstract void includes(IClient cl, IContact c) throws NoLoggedUserException;
@@ -59,27 +57,25 @@ public abstract class ClientState  {
 
 	public abstract void addFilter(IClient cl, Filter f) throws NoLoggedUserException;
 
-	public abstract void addFilter(IClient cl, Filter f, boolean exclusive)throws NoLoggedUserException;
-
 	public abstract void remove(IClient cl, Filter f)throws NoLoggedUserException;
 
 	public abstract List<Filter> getFilters(IClient cl)throws NoLoggedUserException;
 
 	public abstract boolean isExclusive(IClient cl, Filter f) throws NoLoggedUserException;
 
-	public abstract void makeEmail(IClient cl, IHeader h, IBody b, IAttachment a)throws NoLoggedUserException;
+	public abstract IEmail makeEmail(IClient cl, IHeader h, String b, IAttachment a)throws NoLoggedUserException;
 
-	public abstract void makeEmail(IClient cl, IHeader h, IBody b)throws NoLoggedUserException;
+	public abstract Email makeEmail(IClient cl, IHeader h, String b)throws NoLoggedUserException;
 
-	public abstract void makeEmail(IClient cl, IHeader h, IAttachment a)throws NoLoggedUserException;
+	public abstract Email makeEmail(IClient cl, IHeader h, IAttachment a)throws NoLoggedUserException;
 
-	public abstract void makeEmail(IClient cl, IHeader h)throws NoLoggedUserException;
+	public abstract IEmail makeEmail(IClient cl, IHeader h)throws NoLoggedUserException;
 
 	public abstract boolean includes(IClient cl, IEmail e)throws NoLoggedUserException;
 
-	public abstract void remove(IClient cl, IEmail e)throws NoLoggedUserException;
+	public abstract void remove(IClient cl, IEmail e)throws NoLoggedUserException, CannotFindEmailException;
 
-	public abstract void isReaded(IClient cl, IEmail e)throws NoLoggedUserException;
+	public abstract boolean isReaded(IClient cl, IEmail e)throws NoLoggedUserException;
 
 	public abstract void filtrar(IClient cl, List<IEmail> es)throws NoLoggedUserException;
 
@@ -89,10 +85,21 @@ public abstract class ClientState  {
 
 	public abstract void removeFromList(IClient cl, IContact c, IList list)throws NoLoggedUserException;
 
-	public abstract void includesOnList(IClient cl, IContact c, IList list)throws NoLoggedUserException;
-
-	public abstract IAccesType getAccesType() throws NoLoggedUserException;
+	public abstract boolean includesOnList(IClient cl, IContact c, IList list)throws NoLoggedUserException;
 
 	public abstract void filtrar(IClient cl, IEmail es) throws NoLoggedUserException ;
 
+	public abstract IEmail find(Client client, IHeader header) throws CannotFindEmailException, NoLoggedUserException;
+
+	public abstract IAccesType getAccesType(IClient cl) throws NoLoggedUserException;
+
+	public abstract List<IEmail> getEmails(Client client);
+
+	public abstract void makeFilter(IClient cl, Action a, Rule r, boolean exclusive) throws NoLoggedUserException;
+
+	public abstract void addToList(Client cl, IContact c, String listName) throws NoLoggedUserException ;
+
+	public abstract List<IList> getLists(Client client);
+
+	public abstract boolean sendMessage(Client client, int number, String text);
 }

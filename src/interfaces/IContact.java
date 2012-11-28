@@ -6,6 +6,6 @@ public interface IContact {
 	
 	public String getName();
 	public void setName(String newName);
-	public List<IEmail> getEmails();
+	public List<String> getEmails();
 
 }
