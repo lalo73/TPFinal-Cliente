@@ -13,8 +13,11 @@ import interfaces.IList;
 import interfaces.IPerson;
 import interfaces.IUser;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import exception.CannotFindUserException;
 import exceptions.AlreadyLoggedException;
 import exceptions.NoLoggedUserException;
 
@@ -28,6 +31,7 @@ public class Client implements IClient {
 	private IUser loggedUser;
 	private List<Filter> filters;
 	private List<IEvent> events;
+	private List<IEmail> emails;
 	
 	public Client(){
 		this(new NoLoggedUserClientState());
@@ -36,9 +40,12 @@ public class Client implements IClient {
 
 	public Client(ClientState state) {
 		this.setClientState(state);
+		this.setContancts(new ArrayList<IContact>());
+		this.setEvents(new ArrayList<IEvent>());
+		this.setFilters(new ArrayList<Filter>());
+		this.setFolders(new ArrayList<IFolder>());
 	}
-
-	public void askEmails() throws NoLoggedUserException {
+	public void askEmails() throws NoLoggedUserException, CannotFindUserException {
 		this.getClientState().askEmails(this);
 
 	}
@@ -47,7 +54,7 @@ public class Client implements IClient {
 		this.getClientState().createList(this, listName);
 	}
 
-	public void addToList(IContact c, List<IContact> contacts) throws NoLoggedUserException {
+	public void addToList(IContact c, IList contacts) throws NoLoggedUserException {
 		this.getClientState().addToList(this, c, contacts);
 	}
 
@@ -61,6 +68,10 @@ public class Client implements IClient {
 
 	public IUser getUser() throws NoLoggedUserException {
 		return this.getClientState().getUser(this);
+	}
+	
+	public IAccesType getAccesType() throws NoLoggedUserException{
+		return this.getClientState().getAccesType();
 	}
 
 	public ClientState getClientState() {
@@ -243,8 +254,46 @@ public class Client implements IClient {
 
 
 	@Override
-	public void addToList(IPerson c, IList list) {
-		list.add(c);
+	public void addToList(IPerson c, IList list) throws NoLoggedUserException {
+		this.getClientState().addToList(this, c, list);
 	}
+
+
+	@Override
+	public void removeFromList(IContact c, IList list)
+			throws NoLoggedUserException {
+		this.getClientState().removeFromList(this,c,list);
+
+	}
+
+
+	@Override
+	public void includesOnList(IContact c, IList list)
+			throws NoLoggedUserException {
+		this.getClientState().includesOnList(this,c,list);
+		
+	}
+
+
+	public List<IEmail> getEmails() {
+		return emails;
+	}
+
+
+	public void setEmails(List<IEmail> emails) {
+		this.emails = emails;
+	}
+
+
+	@Override
+	public void filtrar(IEmail es) throws NoLoggedUserException {
+		this.getClientState().filtrar(this, es);
+		
+	}
+	
+	public List<IFolder> getRealFolders(){
+		return folders;
+	}
+	
 	
 }

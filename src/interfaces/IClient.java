@@ -5,6 +5,7 @@ import java.util.List;
 import client.ClientState;
 import client.Filter;
 
+import exception.CannotFindUserException;
 import exceptions.AlreadyLoggedException;
 import exceptions.NoLoggedUserException;
 
@@ -18,18 +19,22 @@ public interface IClient {
 	public void logOut() throws NoLoggedUserException;
 
 	// give emails protocol
-	public void askEmails() throws NoLoggedUserException;
+	public void askEmails() throws NoLoggedUserException, CannotFindUserException;
 
 	// people and people list protocol
 	public void addContact(String name, String userEmail) throws NoLoggedUserException;
 
 	public void addList(String listName) throws NoLoggedUserException;
 
-	public void addToList(IPerson c, IList list);
+	public void addToList(IPerson c, IList list) throws NoLoggedUserException;
 
 	public void remove(IContact c) throws NoLoggedUserException;
+	
+	public void removeFromList(IContact c,IList list) throws NoLoggedUserException;;
 
 	public void includes(IContact c) throws NoLoggedUserException;
+	
+	public void includesOnList(IContact c,IList list) throws NoLoggedUserException;
 
 	// folders protocol
 	public void addFolder(String name) throws NoLoggedUserException;
@@ -79,6 +84,8 @@ public interface IClient {
 
 	// internal filter protocol
 	public void filtrar(List<IEmail> es) throws NoLoggedUserException;
+	
+	public void filtrar(IEmail es) throws NoLoggedUserException;
 
 	// Getters and setters
 
@@ -102,6 +109,8 @@ public interface IClient {
 
 	public void setClientState(ClientState clientState);
 
-	void addToList(IContact c, String listName) throws NoLoggedUserException;
+	public void addToList(IContact c, String listName) throws NoLoggedUserException;
+	
+	public List<IFolder> getRealFolders();
 
 }

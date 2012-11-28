@@ -8,193 +8,245 @@ import interfaces.IContact;
 import interfaces.IEmail;
 import interfaces.IFolder;
 import interfaces.IHeader;
+import interfaces.IList;
+import interfaces.IPerson;
 import interfaces.IUser;
 
 import java.util.List;
 
+import exception.CannotFindUserException;
 import exceptions.AlreadyLoggedException;
+import exceptions.NoLoggedUserException;
 
 import server.Server;
 
 public class LoggedUserClientState extends ClientState {
 
 	@Override
-	public void askEmails(IClient client) {
+	public void askEmails(IClient cl) throws NoLoggedUserException, CannotFindUserException {
+		List<IEmail> emails = this.getAccesType().askEmails(cl, false);
+		this.filtrar(cl, emails);
 		
-
 	}
 
-	public void createList(IClient client, String listName) {
-		client.getContancts().add(new ContactList(listName));
-
+	@Override
+	public void createList(IClient cl, String listName) {
+		cl.getContancts().add(new ContactList(listName));
+		
 	}
 
-	public IUser getUser(IClient client) {
-		return client.getLoggedUser();
-	}
-
-	public void logIn(IClient client, String user, String password, Server e, IAccesType at) throws AlreadyLoggedException {
-		throw new AlreadyLoggedException();
-	}
-
-	public void addToList(IClient client, IContact c, List<IContact> contacts) {
+	@Override
+	public void addToList(IClient cl, IContact c, IList contacts) {
 		contacts.add(c);
 	}
 
-	public List<IFolder> getFolders(IClient client) {
-		
-		return null;
+	@Override
+	public List<IFolder> getFolders(IClient cl) {
+		return cl.getRealFolders();
 	}
 
 	@Override
-	public void sendEmail(IClient client, IEmail e) {
+	public void sendEmail(IClient cl, IEmail e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void logOut(Client client) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addList(IClient c, String listName) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addToList(IClient c, IContact cn, String listName) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addContact(IClient c, String name, String userEmail) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void remove(IClient c, IContact cn) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void includes(IClient c, IContact cn) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addFolder(IClient c, String name) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void remove(IClient c, IFolder f) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addToFolder(IClient c, IFolder f, IEmail e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeFrom(IClient c, IFolder f, IEmail e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addFilter(IClient c, Filter f) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addFilter(IClient c, Filter f, boolean exclusive) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void remove(IClient c, Filter f) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<Filter> getFilters(IClient c) {
+	public IUser getUser(IClient cl) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean isExclusive(IClient c, Filter f) {
+	public void logIn(IClient cl, String user, String password, Server e,
+			IAccesType at) throws AlreadyLoggedException {
+		throw new AlreadyLoggedException();
+		
+	}
+
+	@Override
+	public void logOut(IClient cl) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addContact(IClient cl, String name, String userEmail) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addList(IClient cl, String listName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addToList(IClient cl, IContact c, String listName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(IClient cl, IContact c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void includes(IClient cl, IContact c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addFolder(IClient cl, String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(IClient cl, IFolder f) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addToFolder(IClient cl, IFolder f, IEmail e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeFrom(IClient cl, IFolder f, IEmail e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addFilter(IClient cl, Filter f) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addFilter(IClient cl, Filter f, boolean exclusive) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(IClient cl, Filter f) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Filter> getFilters(IClient cl) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isExclusive(IClient cl, Filter f) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public void makeEmail(IClient c, IHeader h, IBody b, IAttachment a) {
+	public void makeEmail(IClient cl, IHeader h, IBody b, IAttachment a) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void makeEmail(IClient c, IHeader h, IBody b) {
+	public void makeEmail(IClient cl, IHeader h, IBody b) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void makeEmail(IClient c, IHeader h, IAttachment a) {
+	public void makeEmail(IClient cl, IHeader h, IAttachment a) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void makeEmail(IClient c, IHeader h) {
+	public void makeEmail(IClient cl, IHeader h) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public boolean includes(IClient c, IEmail e) {
-		return false;
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void remove(IClient c, IEmail e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void isReaded(IClient c, IEmail e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void filtrar(IClient c, List<IEmail> es) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean contains(Client client, IEmail e, IFolder f) {
+	public boolean includes(IClient cl, IEmail e) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public void remove(IClient cl, IEmail e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void isReaded(IClient cl, IEmail e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void filtrar(IClient cl, List<IEmail> emails) throws NoLoggedUserException {
+		for(IEmail email : emails){
+			this.filtrar(cl, email);
+		}
+		
+	}
+
+	@Override
+	public boolean contains(IClient cl, IEmail e, IFolder f) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void addToList(IClient cl, IPerson c, IList list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeFromList(IClient cl, IContact c, IList list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void includesOnList(IClient cl, IContact c, IList list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public IAccesType getAccesType() throws NoLoggedUserException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void filtrar(IClient cl, IEmail es) throws NoLoggedUserException {
+		boolean exclusive = false;
+		for(Filter filter : cl.getFilters()){
+			
+			exclusive = filter.filter(es, cl);
+			if(exclusive){
+				break;
+			}
+		}
+		
+	}
+
+	
 
 }
