@@ -9,11 +9,11 @@ import interfaces.IEmail;
 import client.Client;
 import client.ClientEmail;
 import client.ClientEmailHead;
-import client.Date;
-import client.Delete;
-import client.Equal;
-import client.Filter;
 import exceptions.NoLoggedUserException;
+import filter.Date;
+import filter.Delete;
+import filter.Equal;
+import filter.Filter;
 import static org.mockito.Mockito.*;
 
 

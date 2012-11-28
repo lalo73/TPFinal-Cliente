@@ -1,8 +1,9 @@
-package client;
+package filter;
 
 import interfaces.IClient;
 import interfaces.IEmail;
 import exceptions.CannotFindEmailException;
+import exceptions.CantSetExclusiveException;
 import exceptions.NoLoggedUserException;
 
 public class Delete extends Action {

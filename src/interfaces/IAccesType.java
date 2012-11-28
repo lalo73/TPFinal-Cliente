@@ -19,7 +19,7 @@ public interface IAccesType {
 
 	public IEmail read(IClient client, IEmail email);
 
-	public IEmail read(IClient client, IHeader header) throws CannotFindEmailException, NoLoggedUserException;
+	public IEmail read(IClient client, IHeader header) throws CannotFindEmailException, NoLoggedUserException, exception.CannotFindEmailException, CannotFindUserException;
 	
 	public List<IEmail> changeToClientEmails(List<ServerEmail>server_emails);
 

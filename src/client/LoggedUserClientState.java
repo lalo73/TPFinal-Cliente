@@ -14,18 +14,18 @@ import interfaces.IUser;
 import java.util.ArrayList;
 import java.util.List;
 
-import exception.CannotFindUserException;
 import exceptions.AlreadyLoggedException;
 import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
+import filter.Action;
+import filter.Filter;
 
 import server.Server;
 
 public class LoggedUserClientState extends ClientState {
 
 	@Override
-	public void askEmails(IClient cl) throws NoLoggedUserException,
-			CannotFindUserException {
+	public void askEmails(IClient cl) throws Exception {
 		List<IEmail> emails = this.getAccesType(cl).askEmails(cl, false);
 		this.filtrar(cl, emails);
 
@@ -205,7 +205,7 @@ public class LoggedUserClientState extends ClientState {
 
 	@Override
 	public void filtrar(IClient cl, List<IEmail> emails)
-			throws NoLoggedUserException {
+			throws NoLoggedUserException, CannotFindEmailException {
 		for (IEmail email : emails) {
 			this.filtrar(cl, email);
 		}
@@ -241,7 +241,7 @@ public class LoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void filtrar(IClient cl, IEmail es) throws NoLoggedUserException {
+	public void filtrar(IClient cl, IEmail es) throws NoLoggedUserException, CannotFindEmailException {
 		boolean exclusive = false;
 		for (Filter filter : cl.getFilters()) {
 

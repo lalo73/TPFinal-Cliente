@@ -1,8 +1,10 @@
-package client;
+package filter;
 
 import interfaces.IEmail;
 
 import java.util.ArrayList;
+
+import client.Rule;
 
 public class CompoundAnd extends Compound {
 

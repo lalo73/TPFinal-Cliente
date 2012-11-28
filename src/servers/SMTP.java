@@ -1,4 +1,4 @@
-package client;
+package servers;
 
 import interfaces.IEmail;
 

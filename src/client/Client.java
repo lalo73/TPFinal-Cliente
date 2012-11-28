@@ -15,12 +15,14 @@ import interfaces.IUser;
 import java.util.ArrayList;
 import java.util.List;
 
-import exception.CannotFindUserException;
 import exceptions.AlreadyLoggedException;
 import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
+import filter.Filter;
 
 import server.Server;
+import servers.SMS;
+import servers.SMTP;
 
 public class Client implements IClient {
 
@@ -46,8 +48,7 @@ public class Client implements IClient {
 		this.setFolders(new ArrayList<IFolder>());
 	}
 
-	public void askEmails() throws NoLoggedUserException,
-			CannotFindUserException {
+	public void askEmails() throws Exception {
 		this.getClientState().askEmails(this);
 
 	}
@@ -217,7 +218,7 @@ public class Client implements IClient {
 	}
 
 	@Override
-	public void filtrar(List<IEmail> es) throws NoLoggedUserException {
+	public void filtrar(List<IEmail> es) throws NoLoggedUserException, CannotFindEmailException {
 		this.getClientState().filtrar(this, es);
 	}
 
@@ -296,7 +297,7 @@ public class Client implements IClient {
 	}
 
 	@Override
-	public void filtrar(IEmail es) throws NoLoggedUserException {
+	public void filtrar(IEmail es) throws NoLoggedUserException, CannotFindEmailException {
 		this.getClientState().filtrar(this, es);
 
 	}
@@ -351,9 +352,8 @@ public class Client implements IClient {
 		this.smtp = smtp;
 	}
 
-	public int sendNotifySMS(int i, String string) {
-		// TODO Auto-generated method stub
-		//lalo tiene que completar
+	public void sendNotifySMS(int i, String string) {
+		this.getSms().send(i, string);
 	}
 
 }

@@ -1,4 +1,4 @@
-package client;
+package exceptions;
 
 @SuppressWarnings("serial")
 public class CantSetExclusiveException extends Exception {

@@ -1,6 +1,8 @@
-package client;
+package filter;
 
 import java.util.ArrayList;
+
+import client.Rule;
 
 public abstract class Compound extends Rule{
 
@@ -16,6 +18,7 @@ public abstract class Compound extends Rule{
 	
 	
 	public Compound(ArrayList<Rule> r){
+		super();
 		this.setReglas(r);
 	}
 	

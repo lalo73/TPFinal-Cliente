@@ -10,6 +10,7 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 
 import client.*;
+import filter.Subject;
 
 
 public class SubjectTest {

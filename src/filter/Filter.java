@@ -1,5 +1,6 @@
-package client;
+package filter;
 
+import client.Rule;
 import interfaces.IClient;
 import interfaces.IEmail;
 import exceptions.CannotFindEmailException;

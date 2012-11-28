@@ -11,13 +11,13 @@ import client.Client;
 import client.Email;
 import client.Header;
 
-import client.Different;
 
-import client.Filter;
 import client.Folder;
-import client.MoveToFolder;
-import client.Subject;
 import exceptions.NoLoggedUserException;
+import filter.Different;
+import filter.Filter;
+import filter.MoveToFolder;
+import filter.Subject;
 import static org.mockito.Mockito.*;
 
 

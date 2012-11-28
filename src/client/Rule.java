@@ -1,5 +1,6 @@
 package client;
 
+import filter.Field;
 import interfaces.IEmail;
 
 public abstract class Rule {
@@ -16,10 +17,7 @@ public abstract class Rule {
 
 	public abstract boolean satisfy(IEmail e);
 
-	public Rule(String s,Field f){
-		this.setString(s);
-		this.setF(f);
-	}
+	
 
 	private void setString(String s) {
 		// TODO Auto-generated method stub

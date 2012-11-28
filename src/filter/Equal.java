@@ -1,18 +1,20 @@
-package client;
+package filter;
 
+import client.Rule;
 import interfaces.IEmail;
 
 public class Equal extends Rule {
 	
 	public Equal(String s, Field f) {
-		super(s, f);
+		this.seteString(s);
+		this.setF(f);
 	}
 
 	String string;
 	
 	public boolean satisfy(IEmail e){
 		
-		return string.equals(f.getField(e));
+		return string.equals(this.getF().getField(e));
 	}
 
 	public String geteString() {

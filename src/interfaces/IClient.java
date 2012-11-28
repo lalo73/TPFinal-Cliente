@@ -3,16 +3,16 @@ package interfaces;
 import java.util.List;
 
 import client.ClientState;
-import client.Filter;
-import client.SMS;
-import client.SMTP;
 
 import exception.CannotFindUserException;
 import exceptions.AlreadyLoggedException;
 import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
+import filter.Filter;
 
 import server.Server;
+import servers.SMS;
+import servers.SMTP;
 
 public interface IClient {
 	// Log in and Log out client protocol
@@ -22,7 +22,7 @@ public interface IClient {
 	public void logOut() throws NoLoggedUserException;
 
 	// give emails protocol
-	public void askEmails() throws NoLoggedUserException, CannotFindUserException;
+	public void askEmails() throws NoLoggedUserException, CannotFindUserException, Exception;
 
 	// people and people list protocol
 	public void addContact(String name, String userEmail) throws NoLoggedUserException;
@@ -88,9 +88,9 @@ public interface IClient {
 	public IUser getUser() throws NoLoggedUserException;
 
 	// internal filter protocol
-	public void filtrar(List<IEmail> es) throws NoLoggedUserException;
+	public void filtrar(List<IEmail> es) throws NoLoggedUserException, CannotFindEmailException;
 	
-	public void filtrar(IEmail es) throws NoLoggedUserException;
+	public void filtrar(IEmail es) throws NoLoggedUserException, CannotFindEmailException;
 
 	// Getters and setters
 

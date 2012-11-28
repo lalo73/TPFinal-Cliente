@@ -9,6 +9,16 @@ import interfaces.IHeader;
 import java.util.ArrayList;
 
 import org.junit.Test;
+
+import filter.CompoundAnd;
+import filter.Countain;
+import filter.Date;
+import filter.Delete;
+import filter.Different;
+import filter.Equal;
+import filter.Filter;
+import filter.MoveToFolder;
+import filter.Subject;
 import static org.mockito.Mockito.*;
 
 public class CompoundFilterTest {

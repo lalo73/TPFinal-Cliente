@@ -1,6 +1,8 @@
-package client;
+package events;
 
 import java.util.Calendar;
+
+import client.Client;
 
 import interfaces.IEvent;
 

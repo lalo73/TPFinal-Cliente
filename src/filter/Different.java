@@ -1,5 +1,6 @@
-package client;
+package filter;
 
+import client.Rule;
 import interfaces.IEmail;
 
 public class Different extends Rule {
@@ -26,8 +27,8 @@ public class Different extends Rule {
 	
 	
 	public Different(String s, Field f) {
-		super(s, f);
-		
+        this.setString(s); 
+		this.setF(f);		
 	}
 
 	}

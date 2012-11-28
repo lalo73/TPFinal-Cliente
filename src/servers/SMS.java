@@ -1,4 +1,4 @@
-package client;
+package servers;
 
 public class SMS {
 	

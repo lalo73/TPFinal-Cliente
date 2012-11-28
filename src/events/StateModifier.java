@@ -1,19 +1,21 @@
-package client;
+package events;
 
 import java.util.Calendar;
 
-public class WithNotification extends Event {
+import client.Client;
 
-	public WithNotification(String notify, Frecuency frecuency,
-			Calendar eventDate) {
+public class StateModifier extends Event {
+
+	public StateModifier(String notify, Frecuency frecuency, Calendar eventDate) {
 		super(notify, frecuency, eventDate);
 		// TODO Auto-generated constructor stub
 	}
 
-	
+	@Override
 	protected void act(Client c, Calendar d) {
+		
 		if (this.getFrecuency().shouldAct(d)){
-			c.sendNotifySMS(23123123,"event!!");
+			// DEBE CAMBIAR EL ESTADO!!! c.getClientState().
 			this.getFrecuency().nextDate(d);
 		}
 		

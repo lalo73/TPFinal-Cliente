@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import client.*;
 import exceptions.NoLoggedUserException;
+import filter.MoveToFolder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 

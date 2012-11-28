@@ -16,6 +16,8 @@ import java.util.List;
 import server.Server;
 import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
+import filter.Action;
+import filter.Filter;
 
 public class NoLoggedUserClientState extends ClientState {
 

@@ -1,4 +1,4 @@
-package client;
+package filter;
 
 import interfaces.IClient;
 import interfaces.IEmail;

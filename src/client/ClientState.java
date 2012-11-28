@@ -17,12 +17,14 @@ import exception.CannotFindUserException;
 import exceptions.AlreadyLoggedException;
 import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
+import filter.Action;
+import filter.Filter;
 
 import server.Server;
 
 public abstract class ClientState  {
 
-	public abstract void askEmails(IClient cl) throws NoLoggedUserException, CannotFindUserException;
+	public abstract void askEmails(IClient cl) throws NoLoggedUserException, CannotFindUserException, Exception;
 
 	public abstract void createList(IClient cl, String listName) throws NoLoggedUserException;
 
@@ -77,7 +79,7 @@ public abstract class ClientState  {
 
 	public abstract boolean isReaded(IClient cl, IEmail e)throws NoLoggedUserException;
 
-	public abstract void filtrar(IClient cl, List<IEmail> es)throws NoLoggedUserException;
+	public abstract void filtrar(IClient cl, List<IEmail> es)throws NoLoggedUserException, CannotFindEmailException;
 
 	public abstract boolean contains(IClient cl, IEmail e, IFolder f)throws NoLoggedUserException;
 
@@ -87,7 +89,7 @@ public abstract class ClientState  {
 
 	public abstract boolean includesOnList(IClient cl, IContact c, IList list)throws NoLoggedUserException;
 
-	public abstract void filtrar(IClient cl, IEmail es) throws NoLoggedUserException ;
+	public abstract void filtrar(IClient cl, IEmail es) throws NoLoggedUserException, CannotFindEmailException ;
 
 	public abstract IEmail find(Client client, IHeader header) throws CannotFindEmailException, NoLoggedUserException;
 

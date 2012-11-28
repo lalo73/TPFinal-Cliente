@@ -8,7 +8,6 @@ import interfaces.IPerson;
 import client.Person;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,8 +19,7 @@ public class TestPerson {
 
 	@Before
 	public void SetUp() {
-		email = mock(IEmail.class);
-		person = new Person("name", email);
+		person = new Person("name", "email");
 	}
 
 	@Test
@@ -32,20 +30,20 @@ public class TestPerson {
 
 	@Test
 	public void testWhenAPersonIsCreatedThenItHasAEmailListWithJustOneEmail() {
-		List<IEmail> emails_list = new ArrayList<IEmail>();
-		emails_list.add(email);
+		List<String> emails_list = new ArrayList<String>();
+		emails_list.add("email");
 		assertEquals(person.getEmails(), emails_list);
 	}
 
 	@Test
 	public void testWhenSetAEmailThenItSetsAEmailList() {
-		List<IEmail> emails_list = new ArrayList<IEmail>();
-		emails_list.add(email);
+		List<String> emails_list = new ArrayList<String>();
+		emails_list.add("email");
 		
 		assertEquals(person.getEmails(), emails_list);
-		IEmail second_email = mock(IEmail.class);
+		String second_email = "SecondEmail";
 		person.setEmail(second_email);
-		List<IEmail> second_emails_list = new ArrayList<IEmail>();
+		List<String> second_emails_list = new ArrayList<String>();
 		second_emails_list.add(second_email);
 		assertEquals(second_emails_list , person.getEmails());
 

@@ -1,5 +1,6 @@
-package client;
+package filter;
 
+import client.Rule;
 import interfaces.IEmail;
 
 public class Countain extends Rule {
@@ -20,7 +21,8 @@ public class Countain extends Rule {
 	}
 	
 	public Countain(String s, Field f) {
-		super(s, f);
+		this.setString(s);
+		this.setF(f);
 		
 	}
 

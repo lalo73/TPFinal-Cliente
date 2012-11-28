@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import interfaces.IEmail;
 import client.*;
+import filter.Countain;
+import filter.Subject;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 

@@ -1,4 +1,4 @@
-package client;
+package events;
 
 import java.util.Calendar;
 
