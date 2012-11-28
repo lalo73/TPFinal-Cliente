@@ -11,9 +11,10 @@ public class MarkRead extends Action {
 		
 		e.setReaded(true);
 		return false;
-		
-	  }
+	}
 
+	
+	
 	public boolean exclusive() {
 		return exclusive;
 	}

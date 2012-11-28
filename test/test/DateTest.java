@@ -43,7 +43,7 @@ public class DateTest {
 	}
 		
 	@Test
-	public void senderTest(){
+	public void dateTest(){
 		
 		assertEquals("12/12/2012",res);
 	}	

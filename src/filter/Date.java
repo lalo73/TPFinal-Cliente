@@ -14,6 +14,7 @@ public class Date extends Field {
 
 		return formatDate.format(fecha);
 
-	}
-
+	}	
+	
 }
+

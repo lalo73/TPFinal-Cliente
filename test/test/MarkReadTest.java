@@ -1,15 +1,15 @@
 package test;
 
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
+import static org.mockito.Mockito.verify;
 import org.junit.Before;
 import org.junit.Test;
-
 import client.*;
 import filter.MarkRead;
+
+//CORRE
 
 public class MarkReadTest {
 
@@ -25,15 +25,12 @@ public class MarkReadTest {
 		email=mock(Email.class);//Email 1
 		when(email.isReaded()).thenReturn(false);
 		mr=new MarkRead(false);
-		mr.act(email,cl);
-		
-		
-		
 	}
 
 	@Test
 	public void testMarkRead(){
-		assertTrue(email.isReaded());
+		mr.act(email,cl);
+		verify(email).setReaded(true);
 		
 	}
 	
