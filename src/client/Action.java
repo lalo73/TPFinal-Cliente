@@ -2,11 +2,12 @@ package client;
 
 import interfaces.IClient;
 import interfaces.IEmail;
+import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
 
 public abstract class Action {
 
-	public abstract boolean act(IEmail e, IClient c) throws NoLoggedUserException;
+	public abstract boolean act(IEmail e, IClient c) throws NoLoggedUserException, CannotFindEmailException;
 	
 	public abstract boolean exclusive();
 	

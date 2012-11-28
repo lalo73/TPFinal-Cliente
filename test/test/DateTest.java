@@ -1,7 +1,6 @@
 package test;
 
 import java.util.Calendar;
-
 import org.junit.Before;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;

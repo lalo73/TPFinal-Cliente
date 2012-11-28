@@ -6,18 +6,28 @@ import org.junit.Test;
 
 import interfaces.IClient;
 import interfaces.IEmail;
-import client.*;
+
+import client.Client;
+import client.Email;
+import client.Header;
+
+import client.Different;
+
+import client.Filter;
+import client.Folder;
+import client.MoveToFolder;
+import client.Subject;
 import exceptions.NoLoggedUserException;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-import server.*;
 
 
-public class ContainTest {
+public class NOSIRVE_DifferentTest {
+
 	Calendar d;
 	IEmail email;
-	Filter f1;
 	IClient client;
+	Folder folder;
+	Filter f3;
 	
 	
 	@Before
@@ -30,7 +40,7 @@ public class ContainTest {
 		
 		
 		//Mock de Cliente
-	    client=mock(Client.class);
+		client=mock(Client.class);
 		
 		
 		//Mocks de header 
@@ -44,21 +54,33 @@ public class ContainTest {
 		when(email.getHead()).thenReturn(head);
 		when(email.isReaded()).thenReturn(false);
 		
+		//Mocks de Folder
+		folder= mock(Folder.class);
+		
+		
+		//Si el subject es distinto a Java mover a carpeta spam
+		Subject sub =new Subject();
+		Different dif =new Different("Java",sub);
+		MoveToFolder mtf = new MoveToFolder(folder,false);
+		f3 = new Filter(dif,mtf);
+		
 	
-		
-        //Si el sender contiene TPI marcar como leido  
-		Sender s = new Sender();
-	  	Countain cont=new Countain("T",s);
-	  	MarkRead mark=new MarkRead(false);
-		f1= new Filter(cont,mark);
-		
-		
 	}
+	
+  @Test
+  public void differentSubjectTest() throws NoLoggedUserException{
+	  f3.filter(email,client);
+	  verify(client).addToFolder(folder,email);
+	  
+  }
 
-@Test
-public void ContainMarkRead() throws NoLoggedUserException{
-	f1.filter(email,client);
-	assertTrue("el mail debe ser marcado como leido",email.isReaded());
-	}
 
+	
+	
 }
+	
+	
+	
+	
+	
+	

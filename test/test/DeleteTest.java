@@ -2,6 +2,7 @@ package test;
 import org.junit.Before;
 import org.junit.Test;
 import client.*;
+import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -25,7 +26,7 @@ public class DeleteTest {
 	}
 
 	@Test
-	public void testDelete() throws NoLoggedUserException{
+	public void testDelete() throws NoLoggedUserException, CannotFindEmailException{
 	    d.act(em,cl);
 		verify(cl).remove(em);
 		

@@ -15,12 +15,12 @@ public class Different extends Rule {
 	}
 
 
-	public String getdString() {
+	public String getString() {
 		return string;
 	}
 
 
-	public void setdString(String dString) {
+	public void setString(String dString) {
 		this.string = dString;
 	}
 	

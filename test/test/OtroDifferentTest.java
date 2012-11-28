@@ -3,10 +3,7 @@ package test;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import interfaces.IClient;
 import interfaces.IEmail;
-
 import client.*;
 import client.Different;
 
@@ -14,8 +11,8 @@ import client.Different;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-
-public class otroDifferentTest {
+//Corre
+public class OtroDifferentTest {
 	
 	Different dif;
 	IEmail e;
@@ -24,7 +21,9 @@ public class otroDifferentTest {
     @Before
 	public void setUp() throws Exception {
 		//Mock de Sender
-		Sender sen =mock(Sender.class);
+		
+    	e=mock(Email.class);
+    	Sender sen =mock(Sender.class);
 		when(sen.getField(e)).thenReturn("Google");
 		
 		Different dif =new Different("TPI",sen);

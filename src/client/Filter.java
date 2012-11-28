@@ -2,6 +2,7 @@ package client;
 
 import interfaces.IClient;
 import interfaces.IEmail;
+import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
 
 public class Filter {
@@ -24,7 +25,7 @@ public class Filter {
 	}
 	
 
-	public boolean filter(IEmail e, IClient c) throws NoLoggedUserException {
+	public boolean filter(IEmail e, IClient c) throws NoLoggedUserException, CannotFindEmailException {
 
 		boolean movedFromfolder= false;
 		

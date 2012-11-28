@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 
 
 
-public class EqualTest {
+public class NOSIRVE_EqualTest {
 
 		Calendar d;
 		IEmail email;
