@@ -10,6 +10,7 @@ import client.*;
 import exceptions.NoLoggedUserException;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import server.*;
 
 
 public class ContainTest {
@@ -33,24 +34,23 @@ public class ContainTest {
 		
 		
 		//Mocks de header 
-		ClientEmailHead head =mock(ClientEmailHead.class);//Para email
+		Header head =mock(Header.class);//Para email
 		when(head.getSubject()).thenReturn("TrabajoPractico");
 		when(head.getSender()).thenReturn("TPI");
 		when(head.getDate()).thenReturn(d);
 		
 		//Mocks de Email
-		email=mock(ClientEmail.class);//Email 1
+		email=mock(Email.class);//Email 1
 		when(email.getHead()).thenReturn(head);
 		when(email.isReaded()).thenReturn(false);
 		
 	
 		
-//Si el sender contiene TPI marcar como leido
-		
-	  	Sender s = new Sender();
+        //Si el sender contiene TPI marcar como leido  
+		Sender s = new Sender();
 	  	Countain cont=new Countain("T",s);
 	  	MarkRead mark=new MarkRead(false);
-		f1= new Filter(false,cont,mark);
+		f1= new Filter(cont,mark);
 		
 		
 	}

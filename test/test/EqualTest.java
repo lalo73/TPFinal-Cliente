@@ -55,7 +55,7 @@ public class EqualTest {
 	Date d=new Date();
 	Equal e=new Equal("12/12/12",d);
 	Delete del=new Delete();
-	f2 = new Filter(false,e,del);
+	f2 = new Filter(e,del);
 	
 	}
 	
