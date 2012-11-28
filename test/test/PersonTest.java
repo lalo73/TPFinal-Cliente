@@ -17,9 +17,7 @@ public class PersonTest {
 
 	@Before
 	public void setUp() {
-		mockEmail = mock(IEmail.class);
-		person = new Person("UserName", mockEmail);
-
+		person = new Person("UserName", "dir_email");
 	}
 
 	@Test
@@ -31,8 +29,8 @@ public class PersonTest {
 
 	@Test
 	public void testAPersonContactHasOnlyAEmail() {
-		assertEquals(person.getEmail(), mockEmail);
-		assertEquals(person.getEmails().get(0), mockEmail);
+		assertEquals(person.getEmail(), "dir_email");
+		assertEquals(person.getEmails().get(0), "dir_email");
 
 	}
 

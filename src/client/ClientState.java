@@ -93,13 +93,13 @@ public abstract class ClientState  {
 
 	public abstract IAccesType getAccesType(IClient cl) throws NoLoggedUserException;
 
-	public abstract List<IEmail> getEmails(Client client);
+	public abstract List<IEmail> getEmails(Client client) throws NoLoggedUserException;
 
 	public abstract void makeFilter(IClient cl, Action a, Rule r, boolean exclusive) throws NoLoggedUserException;
 
 	public abstract void addToList(Client cl, IContact c, String listName) throws NoLoggedUserException ;
 
-	public abstract List<IList> getLists(Client client);
+	public abstract List<IList> getLists(Client client) throws NoLoggedUserException;
 
-	public abstract boolean sendMessage(Client client, int number, String text);
+	public abstract boolean sendMessage(Client client, int number, String text) throws NoLoggedUserException;
 }
