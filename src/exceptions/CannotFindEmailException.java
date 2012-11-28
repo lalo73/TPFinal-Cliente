@@ -4,8 +4,13 @@ package exceptions;
 public class CannotFindEmailException extends Exception{
 
 	public CannotFindEmailException(String string) {
-		// TODO Auto-generated constructor stub
+		super(string);
 	}
+	
+	public CannotFindEmailException(){
+		super();
+	}
+
 	
 }
 

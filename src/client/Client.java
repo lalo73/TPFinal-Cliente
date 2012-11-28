@@ -2,7 +2,6 @@ package client;
 
 import interfaces.IAccesType;
 import interfaces.IAttachment;
-import interfaces.IBody;
 import interfaces.IClient;
 import interfaces.IContact;
 import interfaces.IEmail;
@@ -15,10 +14,10 @@ import interfaces.IUser;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import exception.CannotFindUserException;
 import exceptions.AlreadyLoggedException;
+import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
 
 import server.Server;
@@ -32,11 +31,12 @@ public class Client implements IClient {
 	private List<Filter> filters;
 	private List<IEvent> events;
 	private List<IEmail> emails;
-	
-	public Client(){
+	private SMS sms;
+	private SMTP smtp;
+
+	public Client() {
 		this(new NoLoggedUserClientState());
 	}
-	
 
 	public Client(ClientState state) {
 		this.setClientState(state);
@@ -45,7 +45,9 @@ public class Client implements IClient {
 		this.setFilters(new ArrayList<Filter>());
 		this.setFolders(new ArrayList<IFolder>());
 	}
-	public void askEmails() throws NoLoggedUserException, CannotFindUserException {
+
+	public void askEmails() throws NoLoggedUserException,
+			CannotFindUserException {
 		this.getClientState().askEmails(this);
 
 	}
@@ -54,7 +56,8 @@ public class Client implements IClient {
 		this.getClientState().createList(this, listName);
 	}
 
-	public void addToList(IContact c, IList contacts) throws NoLoggedUserException {
+	public void addToList(IContact c, IList contacts)
+			throws NoLoggedUserException {
 		this.getClientState().addToList(this, c, contacts);
 	}
 
@@ -66,12 +69,16 @@ public class Client implements IClient {
 		this.getClientState().sendEmail(this, e);
 	}
 
+	public boolean sendMessage(int number, String text) {
+		return this.getClientState().sendMessage(this, number, text);
+	}
+
 	public IUser getUser() throws NoLoggedUserException {
 		return this.getClientState().getUser(this);
 	}
-	
-	public IAccesType getAccesType() throws NoLoggedUserException{
-		return this.getClientState().getAccesType();
+
+	public IAccesType getAccesType() throws NoLoggedUserException {
+		return this.getClientState().getAccesType(this);
 	}
 
 	public ClientState getClientState() {
@@ -83,43 +90,46 @@ public class Client implements IClient {
 	}
 
 	@Override
-	public void logIn(String user, String password, Server e, IAccesType at) throws AlreadyLoggedException {
+	public void logIn(String user, String password, Server e, IAccesType at)
+			throws AlreadyLoggedException {
 		this.getClientState().logIn(this, user, password, e, at);
-		
+
 	}
 
 	@Override
 	public void logOut() throws NoLoggedUserException {
 		this.getClientState().logOut(this);
-		
+
 	}
 
 	@Override
-	public void addContact(String name, String userEmail) throws NoLoggedUserException {
-		
+	public void addContact(String name, String userEmail)
+			throws NoLoggedUserException {
+
 		this.getClientState().addContact(this, name, userEmail);
 	}
 
 	@Override
 	public void addList(String listName) throws NoLoggedUserException {
 		this.getClientState().addList(this, listName);
-		
+
 	}
 
 	@Override
-	public void addToList(IContact c, String listName) throws NoLoggedUserException {
-		this.getClientState().addToList(this,c,listName);
+	public void addToList(IContact c, String listName)
+			throws NoLoggedUserException {
+		this.getClientState().addToList(this, c, listName);
 	}
 
 	@Override
 	public void remove(IContact c) throws NoLoggedUserException {
-		this.getClientState().remove(this,c);
+		this.getClientState().remove(this, c);
 	}
 
 	@Override
 	public void includes(IContact c) throws NoLoggedUserException {
-		this.getClientState().includes(this,c);
-		
+		this.getClientState().includes(this, c);
+
 	}
 
 	@Override
@@ -148,8 +158,9 @@ public class Client implements IClient {
 	}
 
 	@Override
-	public void addFilter(Filter f, boolean exclusive) throws NoLoggedUserException {
-		this.getClientState().addFilter(this, f, exclusive);
+	public void addFilter(Filter f, boolean exclusive)
+			throws NoLoggedUserException {
+		this.getClientState().addFilter(this, f);
 	}
 
 	@Override
@@ -168,19 +179,21 @@ public class Client implements IClient {
 	}
 
 	@Override
-	public void makeEmail(IHeader h, IBody b, IAttachment a) throws NoLoggedUserException {
+	public void makeEmail(IHeader h, String b, IAttachment a)
+			throws NoLoggedUserException {
 		this.getClientState().makeEmail(this, h, b, a);
 	}
 
 	@Override
-	public void makeEmail(IHeader h, IBody b) throws NoLoggedUserException {
+	public void makeEmail(IHeader h, String b) throws NoLoggedUserException {
 		this.getClientState().makeEmail(this, h, b);
 	}
 
 	@Override
-	public void makeEmail(IHeader h, IAttachment a) throws NoLoggedUserException {
-		this.getClientState().makeEmail(this, h, a);	
-		}
+	public void makeEmail(IHeader h, IAttachment a)
+			throws NoLoggedUserException {
+		this.getClientState().makeEmail(this, h, a);
+	}
 
 	@Override
 	public void makeEmail(IHeader h) throws NoLoggedUserException {
@@ -193,7 +206,8 @@ public class Client implements IClient {
 	}
 
 	@Override
-	public void remove(IEmail e) throws NoLoggedUserException {
+	public void remove(IEmail e) throws NoLoggedUserException,
+			CannotFindEmailException {
 		this.getClientState().remove(this, e);
 	}
 
@@ -206,6 +220,7 @@ public class Client implements IClient {
 	public void filtrar(List<IEmail> es) throws NoLoggedUserException {
 		this.getClientState().filtrar(this, es);
 	}
+
 	/**
 	 * Getters and Setters
 	 */
@@ -243,57 +258,97 @@ public class Client implements IClient {
 	}
 
 	public boolean contains(IEmail e, IFolder f) throws NoLoggedUserException {
-		
-		return this.getClientState().contains(this,e,f);
+
+		return this.getClientState().contains(this, e, f);
 	}
 
 	public boolean includesEmail(IEmail e) throws NoLoggedUserException {
 
-		return this.getClientState().includes(this,e);
+		return this.getClientState().includes(this, e);
 	}
-
 
 	@Override
 	public void addToList(IPerson c, IList list) throws NoLoggedUserException {
 		this.getClientState().addToList(this, c, list);
 	}
 
-
 	@Override
 	public void removeFromList(IContact c, IList list)
 			throws NoLoggedUserException {
-		this.getClientState().removeFromList(this,c,list);
+		this.getClientState().removeFromList(this, c, list);
 
 	}
-
 
 	@Override
 	public void includesOnList(IContact c, IList list)
 			throws NoLoggedUserException {
-		this.getClientState().includesOnList(this,c,list);
-		
-	}
+		this.getClientState().includesOnList(this, c, list);
 
+	}
 
 	public List<IEmail> getEmails() {
-		return emails;
-	}
 
+		return this.getClientState().getEmails(this);
+	}
 
 	public void setEmails(List<IEmail> emails) {
 		this.emails = emails;
 	}
 
-
 	@Override
 	public void filtrar(IEmail es) throws NoLoggedUserException {
 		this.getClientState().filtrar(this, es);
-		
+
 	}
-	
-	public List<IFolder> getRealFolders(){
+
+	public List<IFolder> getRealFolders() {
 		return folders;
 	}
-	
-	
+
+	@Override
+	public IEmail find(IHeader header) throws CannotFindEmailException,
+			NoLoggedUserException {
+		return this.getClientState().find(this, header);
+	}
+
+	@Override
+	public List<Filter> getRealFiltesr() {
+		return filters;
+	}
+
+	@Override
+	public List<IEmail> getRealEmails() {
+		return emails;
+	}
+
+	@Override
+	public List<IList> getLists() {
+		return this.getClientState().getLists(this);
+	}
+
+	@Override
+	public IUser getRealUser() {
+		return loggedUser;
+	}
+
+	@Override
+	public SMS getSms() {
+		return sms;
+	}
+
+	@Override
+	public void setSms(SMS sms) {
+		this.sms = sms;
+	}
+
+	@Override
+	public SMTP getSmtp() {
+		return smtp;
+	}
+
+	@Override
+	public void setSmtp(SMTP smtp) {
+		this.smtp = smtp;
+	}
+
 }

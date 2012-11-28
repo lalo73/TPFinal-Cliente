@@ -11,5 +11,7 @@ public interface IUser {
 	public void setPassword(String newPassword);
 	public Server getServer();
 	public void setServer(Server server);
+	public void setAccesType(IAccesType accessType);
+	public IAccesType getAccesType();
 
 }

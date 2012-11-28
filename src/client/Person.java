@@ -1,6 +1,5 @@
 package client;
 
-import interfaces.IEmail;
 import interfaces.IPerson;
 
 import java.util.ArrayList;
@@ -9,9 +8,9 @@ import java.util.List;
 public class Person implements IPerson {
 
 	private String name;
-	private List<IEmail> emails;
+	private List<String> emails;
 	
-	public Person(String name, IEmail email){
+	public Person(String name, String email){
 		this.setName(name);
 		this.setEmail(email);
 	}
@@ -27,18 +26,18 @@ public class Person implements IPerson {
 	}
 
 	@Override
-	public List<IEmail> getEmails() {
+	public List<String> getEmails() {
 		return emails;
 	}
 	
 	@Override
-	public IEmail getEmail(){
+	public String getEmail(){
 		return this.getEmails().get(0);
 	}
 
 	@Override
-	public void setEmail(IEmail email) {
-		emails = new ArrayList<IEmail>();
+	public void setEmail(String email) {
+		emails = new ArrayList<String>();
 		emails.add(email);
 	}
 

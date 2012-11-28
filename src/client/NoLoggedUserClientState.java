@@ -15,6 +15,7 @@ import interfaces.IUser;
 import java.util.List;
 
 import server.Server;
+import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
 
 public class NoLoggedUserClientState extends ClientState {
@@ -27,12 +28,6 @@ public class NoLoggedUserClientState extends ClientState {
 
 	@Override
 	public void createList(IClient cl, String listName) throws NoLoggedUserException {
-		throw new NoLoggedUserException();
-
-	}
-
-	@Override
-	public void addToList(IClient cl, IContact c, List<IContact> contacts) throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 
 	}
@@ -197,6 +192,26 @@ public class NoLoggedUserClientState extends ClientState {
 	@Override
 	public IAccesType getAccesType() throws NoLoggedUserException {
 		throw new NoLoggedUserException();
+	}
+
+	@Override
+	public void addToList(IClient cl, IContact c, IList contacts)
+			throws NoLoggedUserException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void filtrar(IClient cl, IEmail es) throws NoLoggedUserException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public IEmail find(Client client, IHeader header)
+			throws CannotFindEmailException, NoLoggedUserException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

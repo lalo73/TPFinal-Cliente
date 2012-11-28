@@ -4,6 +4,7 @@ import interfaces.IAccesType;
 import interfaces.IAttachment;
 import interfaces.IClient;
 import interfaces.IEmail;
+import interfaces.IFolder;
 import interfaces.IHeader;
 import interfaces.IUser;
 
@@ -11,8 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import exception.CannotFindUserException;
+import exceptions.CannotFindEmailException;
+import exceptions.NoLoggedUserException;
 
-import server.Server;
 import server.ServerEmail;
 import server.ServerEmailAttachment;
 import server.ServerEmailHead;
@@ -29,27 +31,41 @@ public class Pop3 implements IAccesType {
 	}
 
 	@Override
-	public void delete(IClient client, IHeader header) {
-
+	public void delete(IClient client, IHeader header) throws NoLoggedUserException, CannotFindEmailException, Exception {
+		
+		for(IFolder folder : client.getFolders()){
+			if(folder.includes(header)){
+				folder.removeEmailByHeader(header);
+				return;
+			}
+			
+		}
+		throw new CannotFindEmailException();
+		
 		
 	}
 
 	@Override
-	public void delete(IClient client, IEmail email) {
-		// TODO Auto-generated method stub
+	public void delete(IClient client, IEmail email) throws NoLoggedUserException, CannotFindEmailException {
+		for(IFolder folder : client.getFolders()){
+			if(folder.includes(email)){
+				folder.removeEmail(email);
+				return;
+			}
+			
+		}
+		throw new CannotFindEmailException();
 		
 	}
 
 	@Override
 	public IEmail read(IClient client, IEmail email) {
-		// TODO Auto-generated method stub
-		return null;
+		return email;
 	}
 
 	@Override
-	public IEmail read(IClient client, IHeader header) {
-		// TODO Auto-generated method stub
-		return null;
+	public IEmail read(IClient client, IHeader header) throws CannotFindEmailException, NoLoggedUserException {
+		return client.find(header);
 	}
 
 	@Override
