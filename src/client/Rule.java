@@ -20,4 +20,9 @@ public abstract class Rule {
 		this.setString(s);
 		this.setF(f);
 	}
+
+	private void setString(String s) {
+		// TODO Auto-generated method stub
+		
+	}
 }

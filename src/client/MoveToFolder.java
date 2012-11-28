@@ -7,6 +7,7 @@ import exceptions.NoLoggedUserException;
 public class MoveToFolder extends Action {
 
 	Folder f;
+	boolean exclusive;
 
 	public Folder getF() {
 		return f;
@@ -16,10 +17,19 @@ public class MoveToFolder extends Action {
 		this.f = f;
 	}
 
-	public void act(IEmail e, IClient c) throws NoLoggedUserException {
+	public boolean act(IEmail e, IClient c) throws NoLoggedUserException {
 
 		c.addToFolder(this.getF(), e);
+		return false;
 
 	}
 
+	public void setExclusive(boolean b){
+		this.exclusive=b;
+	}
+	
+	public boolean exclusive() {
+		return exclusive;
+	}
+	
 }

@@ -18,9 +18,7 @@ public class CompoundAnd extends Compound {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static void main(String[] args) {
-		System.out.println("Lalo");
-	}
+	
 	
 	
 }
