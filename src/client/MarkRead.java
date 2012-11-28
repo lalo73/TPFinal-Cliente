@@ -22,4 +22,10 @@ public class MarkRead extends Action {
 		this.exclusive = exclusive;
 	}
 	
+	
+	public MarkRead(boolean b){
+		
+		this.setExclusive(b);
+	}
+	
 }

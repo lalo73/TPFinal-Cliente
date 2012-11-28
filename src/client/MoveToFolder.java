@@ -32,4 +32,11 @@ public class MoveToFolder extends Action {
 		return exclusive;
 	}
 	
+	public MoveToFolder(Folder f,boolean b){
+		this.setF(f);
+		this.setExclusive(b);
+		
+	}
+	
+	
 }
