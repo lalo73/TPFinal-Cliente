@@ -1,4 +1,4 @@
-package test;
+package filtersTest;
 
 import java.util.Calendar;
 import org.junit.Before;

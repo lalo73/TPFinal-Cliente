@@ -1,4 +1,4 @@
-package test;
+package filtersTest;
 
 
 import static org.mockito.Mockito.mock;
