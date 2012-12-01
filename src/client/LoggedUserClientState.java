@@ -19,6 +19,7 @@ import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
 import filter.Action;
 import filter.Filter;
+import filter.Rule;
 
 import server.Server;
 
@@ -27,6 +28,7 @@ public class LoggedUserClientState extends ClientState {
 	@Override
 	public void askEmails(IClient cl) throws Exception {
 		List<IEmail> emails = this.getAccesType(cl).askEmails(cl, false);
+		
 		this.filtrar(cl, emails);
 
 	}

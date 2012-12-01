@@ -19,6 +19,7 @@ import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
 import filter.Action;
 import filter.Filter;
+import filter.Rule;
 
 import server.Server;
 

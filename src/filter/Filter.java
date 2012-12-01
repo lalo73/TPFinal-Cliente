@@ -1,6 +1,5 @@
 package filter;
 
-import client.Rule;
 import interfaces.IClient;
 import interfaces.IEmail;
 import exceptions.CannotFindEmailException;
@@ -8,36 +7,31 @@ import exceptions.NoLoggedUserException;
 
 public class Filter {
 
-
 	Rule rule;
 	Action action;
-	
 
-	
-	public boolean getExclusive(){
-		
+	public boolean getExclusive() {
+
 		return this.getAction().exclusive();
-		
+
 	}
-	
-	public void setExclusive(boolean bool) throws Exception{
+
+	public void setExclusive(boolean bool) throws Exception {
 		this.getAction().setExclusive(bool);
-		
+
 	}
-	
 
-	public boolean filter(IEmail e, IClient c) throws NoLoggedUserException, CannotFindEmailException {
+	public boolean filter(IEmail e, IClient c) throws NoLoggedUserException,
+			CannotFindEmailException {
 
-		boolean movedFromfolder= false;
-		
+		boolean movedFromfolder = false;
+
 		if (rule.satisfy(e)) {
 
-			movedFromfolder= movedFromfolder || action.act(e, c);
+			movedFromfolder = movedFromfolder || action.act(e, c);
 		}
 		return movedFromfolder;
 	}
-
-
 
 	public Rule getRule() {
 		return rule;
@@ -56,7 +50,7 @@ public class Filter {
 	}
 
 	public Filter(Rule r, Action a) {
-		
+
 		this.setRule(r);
 		this.setAction(a);
 	}

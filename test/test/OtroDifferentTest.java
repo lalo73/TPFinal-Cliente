@@ -6,6 +6,7 @@ import org.junit.Test;
 import interfaces.IEmail;
 import client.*;
 import filter.Different;
+import filter.Sender;
 
 
 import static org.junit.Assert.*;

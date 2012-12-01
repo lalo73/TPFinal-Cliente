@@ -1,6 +1,5 @@
 package filter;
 
-import client.Rule;
 import interfaces.IEmail;
 
 public class Different extends Rule {

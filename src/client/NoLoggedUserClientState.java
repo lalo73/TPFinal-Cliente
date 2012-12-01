@@ -18,6 +18,7 @@ import exceptions.CannotFindEmailException;
 import exceptions.NoLoggedUserException;
 import filter.Action;
 import filter.Filter;
+import filter.Rule;
 
 public class NoLoggedUserClientState extends ClientState {
 

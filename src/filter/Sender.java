@@ -1,6 +1,5 @@
-package client;
+package filter;
 
-import filter.Field;
 import interfaces.IEmail;
 
 public class Sender extends Field {

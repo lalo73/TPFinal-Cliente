@@ -2,7 +2,6 @@ package filter;
 
 import java.util.ArrayList;
 
-import client.Rule;
 
 public abstract class Compound extends Rule{
 

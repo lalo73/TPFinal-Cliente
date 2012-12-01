@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import client.*;
+import filter.Sender;
 
 public class SenderTest {
 	

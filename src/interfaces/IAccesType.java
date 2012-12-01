@@ -1,5 +1,6 @@
 package interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import server.ServerEmail;
@@ -10,12 +11,12 @@ import exceptions.NoLoggedUserException;
 
 public interface IAccesType {
 
-	public List<IEmail> askEmails(IClient cl, boolean delete)
+	public ArrayList<IEmail> askEmails(IClient cl, boolean delete)
 			throws CannotFindUserException, Exception;
 
 	public void delete(IClient client, IHeader header) throws NoLoggedUserException, CannotFindEmailException, Exception;
 
-	public void delete(IClient client, IEmail email) throws NoLoggedUserException, CannotFindEmailException;
+	public void delete(IClient client, IEmail email) throws NoLoggedUserException, CannotFindEmailException, Exception;
 
 	public IEmail read(IClient client, IEmail email);
 

@@ -4,7 +4,6 @@ import interfaces.IEmail;
 
 import java.util.ArrayList;
 
-import client.Rule;
 
 public class CompoundOr extends Compound{
 	

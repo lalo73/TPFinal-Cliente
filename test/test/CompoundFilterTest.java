@@ -18,6 +18,8 @@ import filter.Different;
 import filter.Equal;
 import filter.Filter;
 import filter.MoveToFolder;
+import filter.Rule;
+import filter.Sender;
 import filter.Subject;
 import static org.mockito.Mockito.*;
 

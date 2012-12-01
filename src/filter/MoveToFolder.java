@@ -25,19 +25,18 @@ public class MoveToFolder extends Action {
 
 	}
 
-	public void setExclusive(boolean b){
-		this.exclusive=b;
+	public void setExclusive(boolean b) {
+		this.exclusive = b;
 	}
-	
+
 	public boolean exclusive() {
 		return exclusive;
 	}
-	
-	public MoveToFolder(Folder f,boolean b){
+
+	public MoveToFolder(Folder f, boolean b) {
 		this.setF(f);
 		this.setExclusive(b);
-		
+
 	}
-	
-	
+
 }

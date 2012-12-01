@@ -12,6 +12,7 @@ import exceptions.NoLoggedUserException;
 import filter.Countain;
 import filter.Filter;
 import filter.MarkRead;
+import filter.Sender;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import server.*;

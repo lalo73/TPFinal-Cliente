@@ -22,7 +22,7 @@ import server.ServerEmailHead;
 public class Pop3 implements IAccesType {
 
 	@Override
-	public List<IEmail> askEmails(IClient cl, boolean delete) throws Exception {
+	public ArrayList<IEmail> askEmails(IClient cl, boolean delete) throws Exception {
 		IUser user = cl.getLoggedUser();
 		List<ServerEmail> server_emails = user.getServer().sendEmailWithPOP3(
 				user.getName(), delete);
@@ -48,7 +48,7 @@ public class Pop3 implements IAccesType {
 
 	@Override
 	public void delete(IClient client, IEmail email)
-			throws NoLoggedUserException, CannotFindEmailException {
+			throws NoLoggedUserException, CannotFindEmailException, Exception {
 		for (IFolder folder : client.getFolders()) {
 			if (folder.includes(email)) {
 				folder.removeEmail(email);
@@ -72,8 +72,8 @@ public class Pop3 implements IAccesType {
 	}
 
 	@Override
-	public List<IEmail> changeToClientEmails(List<ServerEmail> server_emails) {
-		List<IEmail> client_emails = new ArrayList<IEmail>();
+	public ArrayList<IEmail> changeToClientEmails(List<ServerEmail> server_emails) {
+		ArrayList<IEmail> client_emails = new ArrayList<IEmail>();
 		for (ServerEmail server_email : server_emails) {
 
 			IHeader client_head = this.changeToClientHead(server_email
