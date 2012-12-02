@@ -76,8 +76,7 @@ public class POP3Test {
 	}
 
 	@Test
-	public void testdeleteEmail() throws NoLoggedUserException,
-			CannotFindEmailException {
+	public void testdeleteEmail() throws Exception {
 		IEmail email = mock(IEmail.class);
 		IFolder folder = mock(Folder.class);
 		List<IFolder> folders = new ArrayList<IFolder>();

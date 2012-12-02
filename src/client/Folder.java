@@ -1,4 +1,7 @@
 package client;
+/**
+ * Author: Flores Jorge
+ */
 
 import interfaces.IEmail;
 import interfaces.IFolder;

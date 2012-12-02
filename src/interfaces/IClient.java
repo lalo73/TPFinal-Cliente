@@ -135,5 +135,7 @@ public interface IClient {
 	public SMTP getSmtp();
 
 	public void setSmtp(SMTP smtp);
+	
+	public void changeTo();
 
 }

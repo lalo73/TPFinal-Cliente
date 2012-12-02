@@ -1,30 +1,35 @@
 package test;
 
-import client.*;
+
 
 import static org.junit.Assert.*;
+import interfaces.IAttachment;
+import interfaces.IEmail;
+import interfaces.IHeader;
+
 import java.util.*;
+
 import org.junit.Before;
 import org.junit.Test;
-
+import client.*;
 import exceptions.CannotFindEmailException;
 import static org.mockito.Mockito.*;
 
 public class TestFolder {
-	  ClientEmail e2;
-      ClientEmail e;
-      ClientEmailHead eh;
-      ClientEmailAttachment at;
+	  IEmail e2;
+      IEmail e;
+      IHeader eh;
+      IAttachment at;
       Folder f;
   	
 	@Before
 	public void setUp() throws Exception {
-		ArrayList<ClientEmailAttachment> atts = new ArrayList<ClientEmailAttachment>();
-		at = mock(ClientEmailAttachment.class);
-		atts.add(at);
-		eh = mock(ClientEmailHead.class);
-		e = mock(ClientEmail.class);
-		e2 = mock (ClientEmail.class);
+		ArrayList<IAttachment> atts = new ArrayList<IAttachment>();
+		at = mock(IAttachment.class);
+		atts.add((IAttachment) at);
+		eh = mock(IHeader.class);
+		e = mock(Email.class);
+		e2 = mock (Email.class);
 		when(e.getBody()).thenReturn("aBody");
 		when(e.getAttachment()).thenReturn(atts);
 		when(e.getHead()).thenReturn(eh);	

@@ -1,5 +1,9 @@
 package exceptions;
-
+/**
+ * 
+ * @Author: Flores Jorge  
+ *
+ */
 @SuppressWarnings("serial")
 public class CannotFindEmailException extends Exception{
 

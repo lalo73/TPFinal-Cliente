@@ -1,5 +1,9 @@
 package client;
 
+/**
+ * @Author: Flores Jorge
+ */
+
 import java.util.ArrayList;
 
 import interfaces.IAttachment;
