@@ -15,110 +15,170 @@ import interfaces.IClient;
 import interfaces.IEmail;
 import interfaces.IHeader;
 
-public class AccessType implements IAccesType {
+public abstract class AccessType implements IAccesType {
 
 	@Override
-	public ArrayList<IEmail> askEmails(IClient cl, boolean delete)
-			throws CannotFindUserException, Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract ArrayList<IEmail> askEmails(IClient cl, boolean delete)
+			throws CannotFindUserException, Exception;
 
 	@Override
-	public void delete(IClient client, IHeader header)
-			throws NoLoggedUserException, CannotFindEmailException, Exception {
-		// TODO Auto-generated method stub
-
-	}
+	public abstract void delete(IClient client, IHeader header)
+			throws NoLoggedUserException, CannotFindEmailException, Exception;
 
 	@Override
-	public void delete(IClient client, IEmail email)
-			throws NoLoggedUserException, CannotFindEmailException, Exception {
-		// TODO Auto-generated method stub
-
-	}
+	public abstract void delete(IClient client, IEmail email)
+			throws NoLoggedUserException, CannotFindEmailException, Exception;
 
 	@Override
-	public IEmail read(IClient client, IEmail email) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IEmail read(IClient client, IHeader header)
+	public abstract IEmail read(IClient client, IHeader header)
 			throws CannotFindEmailException, NoLoggedUserException,
-			exception.CannotFindEmailException, CannotFindUserException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public ServerEmailHead changeToServerEmailHead(IHeader header) {
+			exception.CannotFindEmailException, CannotFindUserException, Exception;
+
+	/**
+	 * Make a instance of ServerEmailHead taking its attributes from header
+	 * parameter
+	 * 
+	 * @param header
+	 * @return a instance of ServerEmailHead
+	 */
+	public static ServerEmailHead changeToServerEmailHead(IHeader header) {
 		return new ServerEmailHead(header.getReciver(), header.getSubject(),
 				header.getDate(), header.getSender());
 	}
 
-	public ServerEmail changeToServerEmail(IEmail email) {
+	/**
+	 * make a instance of ServerEmail taking its attributes from email parameter
+	 * 
+	 * @param email
+	 * @return a instance of ServerEmail
+	 */
+	public static ServerEmail changeToServerEmail(IEmail email) {
 
-		return new ServerEmail(this.changeToServerEmailHead(email.getHead()),
-				this.changeToServerAttachment(email.getAttachment()),
+		return new ServerEmail(changeToServerEmailHead(email.getHead()),
+				changeToServerAttachments(email.getAttachment()),
 				email.getBody());
 
 	}
 
-	@Override
-	public ArrayList<IEmail> changeToClientEmails(
-			List<ServerEmail> server_emails) {
-		return null;
-	}
+	/**
+	 * convert a list of ServerEmailAttachement on a list of objects of a class
+	 * that implements a interface IAttachement
+	 * 
+	 * @param attachments
+	 * @return list of objects of a class that implements a interface
+	 *         IAttachement
+	 */
 
-	public IHeader changeToClientHeader(ServerEmailHead head) {
-		return new Header(head.getSender(), head.getReciver(),
-				head.getSubject(), head.getDate());
-
-	}
-
-	public IEmail changeToClientEmail(ServerEmail email) {
-		IHeader head = this.changeToClientHeader(email.getHead());
-		ArrayList<IAttachment> attachs;
-		String body;
-		if (email.getAttachment() != null) {
-			attachs = this.changeClientAttachment(email.getAttachment());
-
-		} else {
-			attachs = new ArrayList<IAttachment>();
-		}
-		if (email.getBody() != null) {
-			body = email.getBody();
-
-		} else {
-			body = "";
-		}
-
-		return new Email(head, body, attachs, true);
-
-	}
-	
-	public ArrayList<ServerEmailAttachment> changeToServerAttachment(
+	public static ArrayList<ServerEmailAttachment> changeToServerAttachments(
 			List<IAttachment> attachments) {
 
 		ArrayList<ServerEmailAttachment> list = new ArrayList<ServerEmailAttachment>();
 		for (IAttachment attachment : attachments) {
-			list.add(new ServerEmailAttachment(attachment.getFileName(),
-					attachment.getFile()));
+			list.add(changeToServerAttachment(attachment));
 
 		}
 
 		return list;
 	}
 
-	public ArrayList<IAttachment> changeClientAttachment(
+	/**
+	 * this method take a Object of a class that implements a IAttachment
+	 * interface
+	 * 
+	 * @param attach
+	 * @return a instance of ServerEmailAttachment
+	 */
+	public static ServerEmailAttachment changeToServerAttachment(
+			IAttachment attach) {
+		return new ServerEmailAttachment(attach.getFileName(), attach.getFile());
+
+	}
+
+	/**
+	 * convert a list Email to a list of ServerEmail
+	 * 
+	 * @param emails
+	 * @return a array list of ServerEmail
+	 */
+
+	public static ArrayList<ServerEmail> changeToServerEmails(
+			ArrayList<IEmail> emails) {
+		ArrayList<ServerEmail> server_emails = new ArrayList<ServerEmail>();
+		for (IEmail email : emails) {
+			server_emails.add(changeToServerEmail(email));
+		}
+
+		return server_emails;
+
+	}
+
+	/**
+	 * Convert a list of ServerEmail instances on a list of objects of a class
+	 * that implements a IEmail interface
+	 * 
+	 * @param server_emails
+	 * @return a list of instances of objects of a class that implements IEmail
+	 *         interface
+	 */
+	public static ArrayList<IEmail> changeToClientEmails(
+			List<ServerEmail> server_emails) {
+		ArrayList<IEmail> list = new ArrayList<IEmail>();
+		for (ServerEmail email : server_emails)
+			list.add(changeToClientEmail(email));
+		return list;
+	}
+
+	/**
+	 * convert a ServerEmailHead instance on a object of a class that implement
+	 * a interface IHeader
+	 * 
+	 * @param head
+	 * @return a instance of a class that implements a interface IHEader
+	 */
+
+	public static IHeader changeToClientHeader(ServerEmailHead head) {
+		return new Header(head.getSender(), head.getReciver(),
+				head.getSubject(), head.getDate());
+
+	}
+
+	/**
+	 * Convert a list of ServerEmailAttachment to a list of Attachment
+	 * 
+	 * @param attachments
+	 * @return an array list of Attachment
+	 */
+
+	public static ArrayList<IAttachment> changeClientAttachments(
 			ArrayList<ServerEmailAttachment> attachments) {
 		ArrayList<IAttachment> attachs = new ArrayList<IAttachment>();
 		for (ServerEmailAttachment attach : attachments) {
-			attachs.add(new Attachment(attach.getFileName(), attach.getFile()));
+			attachs.add(changeClientAttachment(attach));
 		}
 
 		return attachs;
+	}
+
+	public static IAttachment changeClientAttachment(
+			ServerEmailAttachment attach) {
+		return new Attachment(attach.getFileName(), attach.getFile());
+	}
+
+	/**
+	 * this method take a ServerEmail and convert it to a Email
+	 * 
+	 * @param email
+	 * @return a instance of a class that implements a IEmail interface
+	 */
+
+	public static IEmail changeToClientEmail(ServerEmail email) {
+		IHeader head = changeToClientHeader(email.getHead());
+		ArrayList<IAttachment> attachs;
+		String body;
+		attachs = changeClientAttachments(email.getAttachment());
+		body = email.getBody();
+		return new Email(head, body, attachs, true);
+
 	}
 
 }

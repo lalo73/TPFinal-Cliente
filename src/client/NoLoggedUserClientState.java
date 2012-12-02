@@ -11,6 +11,7 @@ import interfaces.IList;
 import interfaces.IPerson;
 import interfaces.IUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import server.Server;
@@ -36,7 +37,7 @@ public class NoLoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public List<IFolder> getFolders(IClient cl) throws NoLoggedUserException {
+	public ArrayList<IFolder> getFolders(IClient cl) throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
@@ -246,6 +247,24 @@ public class NoLoggedUserClientState extends ClientState {
 	@Override
 	public boolean sendMessage(Client client, int number, String text) throws NoLoggedUserException {
 		throw new NoLoggedUserException();
+	}
+
+	@Override
+	public void changeToHolidayState(Client client, int number) throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+		
+	}
+
+	@Override
+	public void changeToHolidayState(Client client, String email) throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+		
+	}
+
+	@Override
+	public void changeToOnlineState(Client client) throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+		
 	}
 
 }

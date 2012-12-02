@@ -27,12 +27,12 @@ import servers.SMTP;
 public class Client implements IClient {
 
 	private ClientState clientState;
-	private List<IFolder> folders;
+	private ArrayList<IFolder> folders;
 	private List<IContact> contancts;
 	private IUser loggedUser;
 	private List<Filter> filters;
 	private List<IEvent> events;
-	private List<IEmail> emails;
+	private ArrayList<IEmail> emails;
 	private SMS sms;
 	private SMTP smtp;
 
@@ -62,7 +62,7 @@ public class Client implements IClient {
 		this.getClientState().addToList(this, c, contacts);
 	}
 
-	public List<IFolder> getFolders() throws NoLoggedUserException {
+	public ArrayList<IFolder> getFolders() throws NoLoggedUserException {
 		return this.getClientState().getFolders(this);
 	}
 
@@ -207,8 +207,7 @@ public class Client implements IClient {
 	}
 
 	@Override
-	public void remove(IEmail e) throws NoLoggedUserException,
-			CannotFindEmailException {
+	public void remove(IEmail e) throws Exception {
 		this.getClientState().remove(this, e);
 	}
 
@@ -218,7 +217,7 @@ public class Client implements IClient {
 	}
 
 	@Override
-	public void filtrar(List<IEmail> es) throws NoLoggedUserException, CannotFindEmailException {
+	public void filtrar(List<IEmail> es) throws Exception {
 		this.getClientState().filtrar(this, es);
 	}
 
@@ -250,7 +249,7 @@ public class Client implements IClient {
 		this.events = events;
 	}
 
-	public void setFolders(List<IFolder> folders) {
+	public void setFolders(ArrayList<IFolder> folders) {
 		this.folders = folders;
 	}
 
@@ -292,17 +291,17 @@ public class Client implements IClient {
 		return this.getClientState().getEmails(this);
 	}
 
-	public void setEmails(List<IEmail> emails) {
+	public void setEmails(ArrayList<IEmail> emails) {
 		this.emails = emails;
 	}
 
 	@Override
-	public void filtrar(IEmail es) throws NoLoggedUserException, CannotFindEmailException {
+	public void filtrar(IEmail es) throws Exception {
 		this.getClientState().filtrar(this, es);
 
 	}
 
-	public List<IFolder> getRealFolders() {
+	public ArrayList<IFolder> getRealFolders() {
 		return folders;
 	}
 
@@ -318,7 +317,7 @@ public class Client implements IClient {
 	}
 
 	@Override
-	public List<IEmail> getRealEmails() {
+	public ArrayList<IEmail> getRealEmails() {
 		return emails;
 	}
 
@@ -355,6 +354,24 @@ public class Client implements IClient {
 	public void sendNotifySMS(int i, String string) {
 		this.getSms().send(i, string);
 	}
+
+	@Override
+	public void changeToHolidayState(int number) throws NoLoggedUserException {
+		this.getClientState().changeToHolidayState(this,number);
+		
+	}
+	@Override
+	public void changeToHolidayState(String email) throws NoLoggedUserException {
+		this.getClientState().changeToHolidayState(this,email);
+		
+	}
+
+	@Override
+	public void changeToOnlineState() throws NoLoggedUserException {
+		this.getClientState().changeToOnlineState(this);
+		
+	}
+
 
 	
 

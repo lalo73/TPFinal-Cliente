@@ -1,5 +1,6 @@
 package interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import client.ClientState;
@@ -48,7 +49,7 @@ public interface IClient {
 
 	public void removeFrom(IFolder f, IEmail e) throws NoLoggedUserException;
 
-	public List<IFolder> getFolders() throws NoLoggedUserException;
+	public ArrayList<IFolder> getFolders() throws NoLoggedUserException;
 	
 	public boolean contains(IEmail e, IFolder f) throws NoLoggedUserException;
 	
@@ -80,7 +81,7 @@ public interface IClient {
 
 	public void includes(IEmail e) throws NoLoggedUserException;
 
-	public void remove(IEmail e) throws NoLoggedUserException, CannotFindEmailException;
+	public void remove(IEmail e) throws NoLoggedUserException, CannotFindEmailException, Exception;
 
 	public void isReaded(IEmail e) throws NoLoggedUserException;
 
@@ -88,9 +89,9 @@ public interface IClient {
 	public IUser getUser() throws NoLoggedUserException;
 
 	// internal filter protocol
-	public void filtrar(List<IEmail> es) throws NoLoggedUserException, CannotFindEmailException;
+	public void filtrar(List<IEmail> es) throws NoLoggedUserException, CannotFindEmailException, Exception;
 	
-	public void filtrar(IEmail es) throws NoLoggedUserException, CannotFindEmailException;
+	public void filtrar(IEmail es) throws NoLoggedUserException, CannotFindEmailException, Exception;
 
 	// Getters and setters
 
@@ -108,7 +109,7 @@ public interface IClient {
 
 	public void setEvents(List<IEvent> events);
 
-	public void setFolders(List<IFolder> folders);
+	public void setFolders(ArrayList<IFolder> folders);
 
 	public void setFilters(List<Filter> filters);
 	
@@ -118,13 +119,13 @@ public interface IClient {
 
 	public void addToList(IContact c, String listName) throws NoLoggedUserException;
 	
-	public List<IFolder> getRealFolders();
+	public ArrayList<IFolder> getRealFolders();
 
 	public IEmail find(IHeader header) throws CannotFindEmailException, NoLoggedUserException;
 
 	public List<Filter> getRealFiltesr();
 
-	public List<IEmail> getRealEmails();
+	public ArrayList<IEmail> getRealEmails();
 
 	public IUser getRealUser();
 
@@ -136,6 +137,10 @@ public interface IClient {
 
 	public void setSmtp(SMTP smtp);
 	
-	public void changeTo();
+	public void changeToHolidayState(int number)throws NoLoggedUserException;
+	
+	public void changeToHolidayState(String email)throws NoLoggedUserException;
+	
+	public void changeToOnlineState() throws NoLoggedUserException;
 
 }

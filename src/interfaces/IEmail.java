@@ -20,4 +20,8 @@ public interface IEmail {
 
 	public IHeader getHead();
 
+	public boolean isFull();
+	
+	public void setFull(boolean full);
+
 }

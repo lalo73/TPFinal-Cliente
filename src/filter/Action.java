@@ -7,7 +7,7 @@ import exceptions.NoLoggedUserException;
 
 public abstract class Action {
 
-	public abstract boolean act(IEmail e, IClient c) throws NoLoggedUserException, CannotFindEmailException;
+	public abstract boolean act(IEmail e, IClient c) throws NoLoggedUserException, CannotFindEmailException, Exception;
 	
 	public abstract boolean exclusive();
 	

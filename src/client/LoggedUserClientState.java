@@ -45,7 +45,7 @@ public class LoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public List<IFolder> getFolders(IClient cl) {
+	public ArrayList<IFolder> getFolders(IClient cl) {
 		return cl.getRealFolders();
 	}
 
@@ -188,14 +188,9 @@ public class LoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void remove(IClient cl, IEmail e) throws NoLoggedUserException,
-			CannotFindEmailException {
-		for (IFolder folder : cl.getFolders()) {
-			if (folder.includes(e)) {
-				folder.removeEmail(e);
-			}
-		}
-		throw new CannotFindEmailException();
+	public void remove(IClient client, IEmail email) throws Exception {
+		client.getLoggedUser().getAccesType().delete(client, email);
+		
 
 	}
 
@@ -207,7 +202,7 @@ public class LoggedUserClientState extends ClientState {
 
 	@Override
 	public void filtrar(IClient cl, List<IEmail> emails)
-			throws NoLoggedUserException, CannotFindEmailException {
+			throws Exception {
 		for (IEmail email : emails) {
 			this.filtrar(cl, email);
 		}
@@ -243,7 +238,7 @@ public class LoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void filtrar(IClient cl, IEmail es) throws NoLoggedUserException, CannotFindEmailException {
+	public void filtrar(IClient cl, IEmail es) throws Exception {
 		boolean exclusive = false;
 		for (Filter filter : cl.getFilters()) {
 
@@ -302,6 +297,22 @@ public class LoggedUserClientState extends ClientState {
 	@Override
 	public boolean sendMessage(Client client, int number, String text) {
 		return client.getSms().send(number, text);
+	}
+
+	@Override
+	public void changeToHolidayState(Client client,int number) {
+		client.setClientState(new OnHoliday(number));
+	}
+	
+	@Override
+	public void changeToHolidayState(Client client,String email) {
+		client.setClientState(new OnHoliday(email));
+	}
+
+	@Override
+	public void changeToOnlineState(Client client) {
+		client.setClientState(new LoggedUserClientState());
+		
 	}
 
 }

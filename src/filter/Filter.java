@@ -21,8 +21,7 @@ public class Filter {
 
 	}
 
-	public boolean filter(IEmail e, IClient c) throws NoLoggedUserException,
-			CannotFindEmailException {
+	public boolean filter(IEmail e, IClient c) throws Exception {
 
 		boolean movedFromfolder = false;
 

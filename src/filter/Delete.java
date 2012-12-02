@@ -9,7 +9,7 @@ import exceptions.NoLoggedUserException;
 public class Delete extends Action {
 
 	
-	public boolean act(IEmail e,IClient c) throws NoLoggedUserException, CannotFindEmailException{
+	public boolean act(IEmail e,IClient c) throws Exception{
 		
 		c.remove(e);
 		return true; 

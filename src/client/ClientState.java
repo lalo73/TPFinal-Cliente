@@ -11,6 +11,7 @@ import interfaces.IList;
 import interfaces.IPerson;
 import interfaces.IUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import exception.CannotFindUserException;
@@ -31,7 +32,7 @@ public abstract class ClientState  {
 
 	public abstract void addToList(IClient cl, IContact c, IList contacts) throws NoLoggedUserException;
 
-	public abstract List<IFolder> getFolders(IClient cl) throws NoLoggedUserException;
+	public abstract ArrayList<IFolder> getFolders(IClient cl) throws NoLoggedUserException;
 
 	public abstract void sendEmail(IClient cl, IEmail e) throws NoLoggedUserException;
 
@@ -76,11 +77,11 @@ public abstract class ClientState  {
 
 	public abstract boolean includes(IClient cl, IEmail e)throws NoLoggedUserException;
 
-	public abstract void remove(IClient cl, IEmail e)throws NoLoggedUserException, CannotFindEmailException;
+	public abstract void remove(IClient cl, IEmail e)throws NoLoggedUserException, CannotFindEmailException, Exception;
 
 	public abstract boolean isReaded(IClient cl, IEmail e)throws NoLoggedUserException;
 
-	public abstract void filtrar(IClient cl, List<IEmail> es)throws NoLoggedUserException, CannotFindEmailException;
+	public abstract void filtrar(IClient cl, List<IEmail> es)throws NoLoggedUserException, CannotFindEmailException, Exception;
 
 	public abstract boolean contains(IClient cl, IEmail e, IFolder f)throws NoLoggedUserException;
 
@@ -90,7 +91,7 @@ public abstract class ClientState  {
 
 	public abstract boolean includesOnList(IClient cl, IContact c, IList list)throws NoLoggedUserException;
 
-	public abstract void filtrar(IClient cl, IEmail es) throws NoLoggedUserException, CannotFindEmailException ;
+	public abstract void filtrar(IClient cl, IEmail es) throws NoLoggedUserException, CannotFindEmailException, Exception ;
 
 	public abstract IEmail find(Client client, IHeader header) throws CannotFindEmailException, NoLoggedUserException;
 
@@ -105,4 +106,10 @@ public abstract class ClientState  {
 	public abstract List<IList> getLists(Client client) throws NoLoggedUserException;
 
 	public abstract boolean sendMessage(Client client, int number, String text) throws NoLoggedUserException;
+
+	public abstract void changeToHolidayState(Client client,int number)throws NoLoggedUserException;
+	
+	public abstract void changeToHolidayState(Client client,String email)throws NoLoggedUserException;
+
+	public abstract void changeToOnlineState(Client client) throws NoLoggedUserException;
 }
