@@ -7,6 +7,8 @@ public abstract class Compound extends Rule{
 
 	ArrayList<Rule>reglas=new ArrayList<Rule>();
 
+	
+	//Getters y Setters.
 	public ArrayList<Rule> getReglas() {
 		return reglas;
 	}
@@ -15,9 +17,8 @@ public abstract class Compound extends Rule{
 		this.reglas = reglas;
 	}
 	
-	
+	//Constructor de Compound
 	public Compound(ArrayList<Rule> r){
-		super();
 		this.setReglas(r);
 	}
 	

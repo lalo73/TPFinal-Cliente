@@ -4,18 +4,16 @@ import interfaces.IEmail;
 
 public class Equal extends Rule {
 	
-	public Equal(String s, Field f) {
-		this.seteString(s);
-		this.setF(f);
-	}
-
 	String string;
 	
+	//Devuelve True si el campo del Email es igual a mi string.
 	public boolean satisfy(IEmail e){
 		
-		return string.equals(this.getF().getField(e));
+		return this.geteString().equals(this.getF().getField(e));
 	}
 
+	
+	//Getters y Setters.
 	public String geteString() {
 		return string;
 	}
@@ -25,6 +23,10 @@ public class Equal extends Rule {
 	}
 	
 
-	
+	//Constructor de Equal.
+	public Equal(String s, Field f) {
+		this.seteString(s);
+		this.setF(f);
+	}	
 
 }

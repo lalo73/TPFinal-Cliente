@@ -11,7 +11,7 @@ public class Different extends Rule {
 	
 	public boolean satisfy(IEmail e){
 		
-		return f.getField(e)!=string;
+		return !(f.getField(e).equals(string));
 	}
 
 

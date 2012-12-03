@@ -22,18 +22,19 @@ public class OtroDifferentTest {
     @Before
 	public void setUp() throws Exception {
 		//Mock de Sender
-		
-    	e=mock(Email.class);
     	Sender sen =mock(Sender.class);
-		when(sen.getField(e)).thenReturn("Google");
-		
-		Different dif =new Different("TPI",sen);
+    	when(sen.getField(e)).thenReturn("Google");
+    	//Mock de Email
+    	e=mock(Email.class);
+    	
+    	Different dif =new Different("TPI",sen);
 		res=dif.satisfy(e);
 	}
 
 	
 	@Test
 	public void DifferentTest(){
+		//Al ser el sender diferente al que yo quiero("TPI"),satisfy debe ser True 
 		assertTrue(res);
 	}
 	

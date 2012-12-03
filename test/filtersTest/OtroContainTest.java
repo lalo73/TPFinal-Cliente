@@ -13,21 +13,15 @@ import static org.mockito.Mockito.*;
 public class OtroContainTest {
 	Countain con;
 	IEmail email;
-	Header head;
     boolean res;
 
 	@Before
 	public void setUp() throws Exception {
-		
-		//head=mock(Header.class);
-		//when(head.getSubject()).thenReturn("TrabajoPractico");
-		
 		email=mock(Email.class);
-		//when(email.getHead()).thenReturn(head);
 		Subject sub=mock(Subject.class);
 		when(sub.getField(email)).thenReturn("TrabajoPractico");
 		
-		Countain con =new Countain("Trabajo",sub);
+		Countain con =new Countain("Spam",sub);
 		res=con.satisfy(email);
 		
 
@@ -35,7 +29,8 @@ public class OtroContainTest {
 
 	@Test
 	public void equalTest(){
-		assertTrue(res);
+		//Al no contener el mismo subject no satisfy debe dar False
+		assertFalse(res);
 	}
 	
 	

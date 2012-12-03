@@ -8,6 +8,21 @@ public class Filter {
 	Rule rule;
 	Action action;
 
+	
+
+	public boolean filter(IEmail e, IClient c) throws Exception {
+
+		boolean movedFromfolder = false;
+
+		if (this.getRule().satisfy(e)) {
+
+			movedFromfolder = movedFromfolder || this.getAction().act(e, c);
+		}
+		return movedFromfolder;
+	}
+
+	
+	//Getters y Setters.
 	public boolean getExclusive() {
 
 		return this.getAction().exclusive();
@@ -18,18 +33,7 @@ public class Filter {
 		this.getAction().setExclusive(bool);
 
 	}
-
-	public boolean filter(IEmail e, IClient c) throws Exception {
-
-		boolean movedFromfolder = false;
-
-		if (rule.satisfy(e)) {
-
-			movedFromfolder = movedFromfolder || action.act(e, c);
-		}
-		return movedFromfolder;
-	}
-
+	
 	public Rule getRule() {
 		return rule;
 	}
@@ -46,6 +50,8 @@ public class Filter {
 		this.action = action;
 	}
 
+	
+	//Constructor de filtro.
 	public Filter(Rule r, Action a) {
 
 		this.setRule(r);

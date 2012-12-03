@@ -2,8 +2,6 @@ package filtersTest;
 import org.junit.Before;
 import org.junit.Test;
 import client.*;
-import exceptions.CannotFindEmailException;
-import exceptions.NoLoggedUserException;
 import filter.Delete;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

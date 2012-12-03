@@ -10,14 +10,7 @@ public class MoveToFolder extends Action {
 	Folder f;
 	boolean exclusive;
 
-	public Folder getF() {
-		return f;
-	}
-
-	public void setF(Folder f) {
-		this.f = f;
-	}
-
+	//Se encarga de que el Cliente mueva a otra carpeta el email.
 	public boolean act(IEmail e, IClient c) throws NoLoggedUserException {
 
 		c.addToFolder(this.getF(), e);
@@ -25,6 +18,15 @@ public class MoveToFolder extends Action {
 
 	}
 
+	//Getters y Setters.
+	public Folder getF() {
+		return f;
+	}
+
+	public void setF(Folder f) {
+		this.f = f;
+	}
+	
 	public void setExclusive(boolean b) {
 		this.exclusive = b;
 	}
@@ -33,6 +35,8 @@ public class MoveToFolder extends Action {
 		return exclusive;
 	}
 
+	
+	//Constructor de MoveToFolder.
 	public MoveToFolder(Folder f, boolean b) {
 		this.setF(f);
 		this.setExclusive(b);
