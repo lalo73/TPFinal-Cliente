@@ -15,11 +15,4 @@ public abstract class Rule {
 	}
 
 	public abstract boolean satisfy(IEmail e);
-
-	
-
-	private void setString(String s) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -27,7 +27,7 @@ public class DeleteTest {
 	}
 
 	@Test
-	public void testDelete() throws NoLoggedUserException, CannotFindEmailException{
+	public void testDelete() throws Exception{
 	    d.act(em,cl);
 		verify(cl).remove(em);
 		

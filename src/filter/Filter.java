@@ -2,8 +2,6 @@ package filter;
 
 import interfaces.IClient;
 import interfaces.IEmail;
-import exceptions.CannotFindEmailException;
-import exceptions.NoLoggedUserException;
 
 public class Filter {
 
