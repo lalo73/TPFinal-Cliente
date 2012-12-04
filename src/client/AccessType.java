@@ -2,7 +2,6 @@ package client;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import server.ServerEmail;
 import server.ServerEmailAttachment;
 import server.ServerEmailHead;
@@ -14,21 +13,46 @@ import interfaces.IAttachment;
 import interfaces.IClient;
 import interfaces.IEmail;
 import interfaces.IHeader;
+/**
+ * Represent a abstract class, that access to a Server of a specific class.
+ * It's got several class method to convert a ServerImail to a Email
+ * 
+ * @author Leandro Gomez
+ *
+ */
 
 public abstract class AccessType implements IAccesType {
 
+	/**
+	 * Must be implemented by a subclass.
+	 * @return a list of Email, taken to the server and convert them to
+	 *   cliene Email 
+	 */
 	@Override
 	public abstract ArrayList<IEmail> askEmails(IClient cl, boolean delete)
 			throws CannotFindUserException, Exception;
 
+	/**
+	 * Delete a Email,find it by its head.
+	 * If is necessary, delete it from the server
+	 */
 	@Override
 	public abstract void delete(IClient client, IHeader header)
 			throws NoLoggedUserException, CannotFindEmailException, Exception;
 
+	/**
+	 * Delete a Email.
+	 * If is necessary, delete it from the server
+	 */
 	@Override
 	public abstract void delete(IClient client, IEmail email)
 			throws NoLoggedUserException, CannotFindEmailException, Exception;
 
+	/**
+	 * return a Email. if it need, give email attributes from sever 
+	 * 
+	 * @return full Email
+	 */
 	@Override
 	public abstract IEmail read(IClient client, IHeader header)
 			throws CannotFindEmailException, NoLoggedUserException,

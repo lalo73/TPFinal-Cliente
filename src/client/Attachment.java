@@ -2,6 +2,12 @@ package client;
 
 import interfaces.IAttachment;
 
+/**
+ * 
+ * 
+ * @author Leandro Gomez
+ *
+ */
 public class Attachment implements IAttachment {
 	
 	private String FileName;
