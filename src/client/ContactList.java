@@ -2,6 +2,7 @@ package client;
 
 import interfaces.IContact;
 import interfaces.IList;
+import interfaces.IPerson;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -60,13 +61,13 @@ public class ContactList implements IList {
 	}
 
 	@Override
-	public void add(IContact c) {
+	public void add(IPerson c) {
 		this.getContacts().add(c);
 		
 	}
 
 	@Override
-	public void remove(IContact c) {
+	public void remove(IPerson c) {
 		this.getContacts().remove(c);
 	}
 	

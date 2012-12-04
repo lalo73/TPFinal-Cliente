@@ -17,6 +17,7 @@ import java.util.List;
 import exception.CannotFindUserException;
 import exceptions.AlreadyLoggedException;
 import exceptions.CannotFindEmailException;
+import exceptions.NoFolderException;
 import exceptions.NoLoggedUserException;
 import filter.Action;
 import filter.Filter;
@@ -30,7 +31,7 @@ public abstract class ClientState  {
 
 	public abstract void createList(IClient cl, String listName) throws NoLoggedUserException;
 
-	public abstract void addToList(IClient cl, IContact c, IList contacts) throws NoLoggedUserException;
+	public abstract void addToList(IClient cl, IPerson c, IList contacts) throws NoLoggedUserException;
 
 	public abstract ArrayList<IFolder> getFolders(IClient cl) throws NoLoggedUserException;
 
@@ -43,13 +44,17 @@ public abstract class ClientState  {
 
 	public abstract void logOut(IClient cl) throws NoLoggedUserException;
 
-	public abstract void addContact(IClient cl, String name, String userEmail) throws NoLoggedUserException ;
+	public abstract void addContact(IClient cl, String name, String userEmail) throws NoLoggedUserException, NoFolderException ;
 
 	public abstract void addList(IClient cl, String listName) throws NoLoggedUserException;
 
-	public abstract void remove(IClient cl, IContact c) throws NoLoggedUserException ;
+	public abstract void remove(IClient cl, IPerson c) throws NoLoggedUserException ;
+	
+	public abstract void remove(IClient cl, IList c) throws NoLoggedUserException ;
 
-	public abstract void includes(IClient cl, IContact c) throws NoLoggedUserException;
+	public abstract boolean includes(IClient cl, IPerson c) throws NoLoggedUserException;
+	
+	public abstract void includes(IClient cl, IList c) throws NoLoggedUserException;
 
 	public abstract void addFolder(IClient cl, String name) throws NoLoggedUserException;
 
@@ -85,9 +90,7 @@ public abstract class ClientState  {
 
 	public abstract boolean contains(IClient cl, IEmail e, IFolder f)throws NoLoggedUserException;
 
-	public abstract void addToList(IClient cl, IPerson c, IList list)throws NoLoggedUserException;
-
-	public abstract void removeFromList(IClient cl, IContact c, IList list)throws NoLoggedUserException;
+	public abstract void removeFromList(IClient cl, IPerson c, IList list)throws NoLoggedUserException;
 
 	public abstract boolean includesOnList(IClient cl, IContact c, IList list)throws NoLoggedUserException;
 
@@ -101,7 +104,7 @@ public abstract class ClientState  {
 
 	public abstract void makeFilter(IClient cl, Action a, Rule r, boolean exclusive) throws NoLoggedUserException;
 
-	public abstract void addToList(Client cl, IContact c, String listName) throws NoLoggedUserException ;
+	public abstract void addToList(IClient cl, IPerson c, String listName) throws NoLoggedUserException ;
 
 	public abstract List<IList> getLists(Client client) throws NoLoggedUserException;
 
@@ -112,4 +115,7 @@ public abstract class ClientState  {
 	public abstract void changeToHolidayState(Client client,String email)throws NoLoggedUserException;
 
 	public abstract void changeToOnlineState(Client client) throws NoLoggedUserException;
+
+	public abstract IList getDefaultList(IClient cl) throws NoFolderException, NoLoggedUserException;
+
 }
