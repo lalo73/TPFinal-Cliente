@@ -17,6 +17,7 @@ import java.util.List;
 
 import exceptions.AlreadyLoggedException;
 import exceptions.CannotFindEmailException;
+import exceptions.NoFolderException;
 import exceptions.NoLoggedUserException;
 import filter.Filter;
 
@@ -28,7 +29,7 @@ public class Client implements IClient {
 
 	private ClientState clientState;
 	private ArrayList<IFolder> folders;
-	private List<IContact> contancts;
+	private List<IList> contancts;
 	private IUser loggedUser;
 	private List<Filter> filters;
 	private List<IEvent> events;
@@ -42,10 +43,11 @@ public class Client implements IClient {
 
 	public Client(ClientState state) {
 		this.setClientState(state);
-		this.setContancts(new ArrayList<IContact>());
+		this.setContancts(new ArrayList<IList>());
 		this.setEvents(new ArrayList<IEvent>());
 		this.setFilters(new ArrayList<Filter>());
 		this.setFolders(new ArrayList<IFolder>());
+		this.getContancts().add(new ContactList("default list"));
 	}
 
 	public void askEmails() throws Exception {
@@ -57,9 +59,9 @@ public class Client implements IClient {
 		this.getClientState().createList(this, listName);
 	}
 
-	public void addToList(IContact c, IList contacts)
+	public void addToList(IPerson person, IList contacts)
 			throws NoLoggedUserException {
-		this.getClientState().addToList(this, c, contacts);
+		this.getClientState().addToList(this, person, contacts);
 	}
 
 	public ArrayList<IFolder> getFolders() throws NoLoggedUserException {
@@ -70,7 +72,8 @@ public class Client implements IClient {
 		this.getClientState().sendEmail(this, e);
 	}
 
-	public boolean sendMessage(int number, String text) throws NoLoggedUserException {
+	public boolean sendMessage(int number, String text)
+			throws NoLoggedUserException {
 		return this.getClientState().sendMessage(this, number, text);
 	}
 
@@ -105,7 +108,7 @@ public class Client implements IClient {
 
 	@Override
 	public void addContact(String name, String userEmail)
-			throws NoLoggedUserException {
+			throws NoLoggedUserException, NoFolderException {
 
 		this.getClientState().addContact(this, name, userEmail);
 	}
@@ -117,19 +120,25 @@ public class Client implements IClient {
 	}
 
 	@Override
-	public void addToList(IContact c, String listName)
+	public void addToList(IPerson c, String listName)
 			throws NoLoggedUserException {
 		this.getClientState().addToList(this, c, listName);
 	}
 
 	@Override
-	public void remove(IContact c) throws NoLoggedUserException {
-		this.getClientState().remove(this, c);
+	public void remove(IPerson person) throws NoLoggedUserException {
+		this.getClientState().remove(this, person);
 	}
 
 	@Override
-	public void includes(IContact c) throws NoLoggedUserException {
-		this.getClientState().includes(this, c);
+	public void includes(IPerson person) throws NoLoggedUserException {
+		this.getClientState().includes(this, person);
+
+	}
+
+	@Override
+	public void includes(IList list) throws NoLoggedUserException {
+		this.getClientState().includes(this, list);
 
 	}
 
@@ -225,11 +234,11 @@ public class Client implements IClient {
 	 * Getters and Setters
 	 */
 
-	public List<IContact> getContancts() {
+	public List<IList> getContancts() {
 		return contancts;
 	}
 
-	public void setContancts(List<IContact> contancts) {
+	public void setContancts(List<IList> contancts) {
 		this.contancts = contancts;
 	}
 
@@ -268,14 +277,9 @@ public class Client implements IClient {
 	}
 
 	@Override
-	public void addToList(IPerson c, IList list) throws NoLoggedUserException {
-		this.getClientState().addToList(this, c, list);
-	}
-
-	@Override
-	public void removeFromList(IContact c, IList list)
+	public void removeFromList(IPerson person, IList list)
 			throws NoLoggedUserException {
-		this.getClientState().removeFromList(this, c, list);
+		this.getClientState().removeFromList(this, person, list);
 
 	}
 
@@ -357,22 +361,31 @@ public class Client implements IClient {
 
 	@Override
 	public void changeToHolidayState(int number) throws NoLoggedUserException {
-		this.getClientState().changeToHolidayState(this,number);
-		
+		this.getClientState().changeToHolidayState(this, number);
+
 	}
+
 	@Override
 	public void changeToHolidayState(String email) throws NoLoggedUserException {
-		this.getClientState().changeToHolidayState(this,email);
-		
+		this.getClientState().changeToHolidayState(this, email);
+
 	}
 
 	@Override
 	public void changeToOnlineState() throws NoLoggedUserException {
 		this.getClientState().changeToOnlineState(this);
-		
+
 	}
 
+	@Override
+	public void remove(IList c) throws NoLoggedUserException {
+		this.getClientState().remove(this, c);
 
-	
+	}
+
+	@Override
+	public IList getDefaultList() throws NoFolderException, NoLoggedUserException {
+		return this.getClientState().getDefaultList(this);
+	}
 
 }

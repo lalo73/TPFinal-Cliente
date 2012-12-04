@@ -16,6 +16,7 @@ import java.util.List;
 
 import exceptions.AlreadyLoggedException;
 import exceptions.CannotFindEmailException;
+import exceptions.NoFolderException;
 import exceptions.NoLoggedUserException;
 import filter.Action;
 import filter.Filter;
@@ -28,7 +29,7 @@ public class LoggedUserClientState extends ClientState {
 	@Override
 	public void askEmails(IClient cl) throws Exception {
 		List<IEmail> emails = this.getAccesType(cl).askEmails(cl, false);
-		
+
 		this.filtrar(cl, emails);
 
 	}
@@ -37,11 +38,6 @@ public class LoggedUserClientState extends ClientState {
 	public void createList(IClient cl, String listName) {
 		cl.getContancts().add(new ContactList(listName));
 
-	}
-
-	@Override
-	public void addToList(IClient cl, IContact c, IList contacts) {
-		contacts.add(c);
 	}
 
 	@Override
@@ -80,8 +76,17 @@ public class LoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void addContact(IClient cl, String name, String userEmail) {
-		cl.getContancts().add(new Person(name, userEmail));
+	public IList getDefaultList(IClient cl) throws NoFolderException {
+		for (IList list : cl.getContancts())
+			if (list.getName().equals("default list"))
+				return list;
+
+		throw new NoFolderException();
+	}
+
+	@Override
+	public void addContact(IClient cl, String name, String userEmail) throws NoFolderException, NoLoggedUserException {
+		cl.getDefaultList().add(new Person(name, userEmail));
 	}
 
 	@Override
@@ -91,13 +96,26 @@ public class LoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void remove(IClient cl, IContact c) {
+	public void remove(IClient cl, IPerson c) {
+		for (IList list : cl.getContancts()) {
+			if (list.includes(c))
+				list.remove(c);
+			break;
+		}
+	}
+
+	@Override
+	public void remove(IClient cl, IList c) {
 		cl.getContancts().remove(c);
 	}
 
 	@Override
-	public void includes(IClient cl, IContact c) {
-		cl.getContancts().contains(c);
+	public boolean includes(IClient cl, IPerson c) {
+		for (IList list : cl.getContancts())
+			if (list.includes(c))
+				return true;
+
+		return false;
 	}
 
 	@Override
@@ -190,7 +208,6 @@ public class LoggedUserClientState extends ClientState {
 	@Override
 	public void remove(IClient client, IEmail email) throws Exception {
 		client.getLoggedUser().getAccesType().delete(client, email);
-		
 
 	}
 
@@ -201,8 +218,7 @@ public class LoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void filtrar(IClient cl, List<IEmail> emails)
-			throws Exception {
+	public void filtrar(IClient cl, List<IEmail> emails) throws Exception {
 		for (IEmail email : emails) {
 			this.filtrar(cl, email);
 		}
@@ -221,7 +237,7 @@ public class LoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void removeFromList(IClient cl, IContact c, IList list) {
+	public void removeFromList(IClient cl, IPerson c, IList list) {
 		list.remove(c);
 
 	}
@@ -272,18 +288,6 @@ public class LoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void addToList(Client cl, IContact c, String listName)
-			throws NoLoggedUserException {
-		for (IList list : cl.getLists()) {
-			if (list.getName().equals(listName))
-				;
-			list.add(c);
-			return;
-		}
-
-	}
-
-	@Override
 	public List<IList> getLists(Client client) {
 		List<IList> lists = new ArrayList<IList>();
 		for (IContact contact : client.getContancts()) {
@@ -300,19 +304,35 @@ public class LoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void changeToHolidayState(Client client,int number) {
+	public void changeToHolidayState(Client client, int number) {
 		client.setClientState(new OnHoliday(number));
 	}
-	
+
 	@Override
-	public void changeToHolidayState(Client client,String email) {
+	public void changeToHolidayState(Client client, String email) {
 		client.setClientState(new OnHoliday(email));
 	}
 
 	@Override
 	public void changeToOnlineState(Client client) {
 		client.setClientState(new LoggedUserClientState());
-		
+
+	}
+
+	@Override
+	public void addToList(IClient cl, IPerson c, String listName)
+			throws NoLoggedUserException {
+		for (IList list : cl.getContancts()) {
+			if (list.getName().equals(listName))
+				list.add(c);
+		}
+
+	}
+
+	@Override
+	public void includes(IClient cl, IList c) throws NoLoggedUserException {
+		cl.getContancts().contains(c);
+
 	}
 
 }

@@ -16,6 +16,7 @@ import java.util.List;
 
 import server.Server;
 import exceptions.CannotFindEmailException;
+import exceptions.NoFolderException;
 import exceptions.NoLoggedUserException;
 import filter.Action;
 import filter.Filter;
@@ -72,16 +73,6 @@ public class NoLoggedUserClientState extends ClientState {
 	@Override
 	public void addList(IClient cl, String listName)
 			throws NoLoggedUserException {
-		throw new NoLoggedUserException();
-	}
-
-	@Override
-	public void remove(IClient cl, IContact c) throws NoLoggedUserException {
-		throw new NoLoggedUserException();
-	}
-
-	@Override
-	public void includes(IClient cl, IContact c) throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
 
@@ -173,22 +164,9 @@ public class NoLoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void removeFromList(IClient cl, IContact c, IList list)
-			throws NoLoggedUserException {
-		throw new NoLoggedUserException();
-	}
-
-	@Override
 	public boolean includesOnList(IClient cl, IContact c, IList list)
 			throws NoLoggedUserException {
 		throw new NoLoggedUserException();
-	}
-
-	@Override
-	public void addToList(IClient cl, IContact c, IList contacts)
-			throws NoLoggedUserException {
-		throw new NoLoggedUserException();
-
 	}
 
 	@Override
@@ -233,13 +211,6 @@ public class NoLoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void addToList(Client cl, IContact c, String listName)
-			throws NoLoggedUserException {
-		throw new NoLoggedUserException();
-
-	}
-
-	@Override
 	public List<IList> getLists(Client client) throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 	}
@@ -265,6 +236,48 @@ public class NoLoggedUserClientState extends ClientState {
 	public void changeToOnlineState(Client client) throws NoLoggedUserException {
 		throw new NoLoggedUserException();
 		
+	}
+
+	@Override
+	public void remove(IClient cl, IPerson c) throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+		
+	}
+
+	@Override
+	public void remove(IClient cl, IList c) throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+		
+	}
+
+	@Override
+	public boolean includes(IClient cl, IPerson c) throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+	}
+
+	@Override
+	public void includes(IClient cl, IList c) throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+		
+	}
+
+	@Override
+	public void removeFromList(IClient cl, IPerson c, IList list)
+			throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+		
+	}
+
+	@Override
+	public void addToList(IClient cl, IPerson c, String listName)
+			throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+		
+	}
+
+	@Override
+	public IList getDefaultList(IClient cl) throws NoFolderException, NoLoggedUserException {
+		throw new NoLoggedUserException();
 	}
 
 }
