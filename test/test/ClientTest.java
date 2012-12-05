@@ -18,6 +18,7 @@ import exception.CannotFindUserException;
 import exceptions.AlreadyLoggedException;
 import exceptions.NoFolderException;
 import exceptions.NoLoggedUserException;
+import filter.Filter;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
@@ -28,6 +29,7 @@ public class ClientTest {
 	IClient client;
 	IClient settedStateClient;
 	ClientState mock_state;
+	IEmail email;
 
 	@Before
 	public void setUp() {
@@ -36,6 +38,7 @@ public class ClientTest {
 		client = new Client();
 		mock_state = mock(ClientState.class);
 		settedStateClient = new Client(mock_state);
+		email = mock(IEmail.class);
 
 	}
 
@@ -251,7 +254,6 @@ public class ClientTest {
 	@Test
 	public void testRemoveFromFolderFailOnNoLoggedUserState() {
 		IFolder folder = mock(IFolder.class);
-		IEmail email = mock(IEmail.class);
 		try {
 			client.removeFrom(folder, email);
 			fail("Exception don't catched");
@@ -264,7 +266,7 @@ public class ClientTest {
 	public void testRemoveFromFolderIsSendedToState()
 			throws NoLoggedUserException {
 		IFolder folder = mock(IFolder.class);
-		IEmail email = mock(IEmail.class);
+
 		settedStateClient.removeFrom(folder, email);
 		verify(mock_state).removeFrom(settedStateClient, folder, email);
 	}
@@ -278,5 +280,97 @@ public class ClientTest {
 		}
 
 	}
+
+	@Test
+	public void testGetFolderIsSendedToState() throws NoLoggedUserException {
+		settedStateClient.getFolders();
+		verify(mock_state).getFolders(settedStateClient);
+
+	}
+
+	@Test
+	public void testContainsFailOnNoLoggedUserState() {
+		IFolder folder = mock(IFolder.class);
+		try {
+			client.contains(email, folder);
+			fail("Exception don't catched");
+
+		} catch (NoLoggedUserException e) {
+		}
+	}
+
+	@Test
+	public void testConteinsIsSendedToState() throws NoLoggedUserException {
+		IFolder folder = mock(IFolder.class);
+		settedStateClient.contains(email, folder);
+		verify(mock_state).contains(settedStateClient, email, folder);
+	}
+
+	@Test
+	public void testIncludeEmailFailOnNoLoggedUserState() {
+		try {
+			client.includes(email);
+			fail("Exception don't catched");
+		} catch (NoLoggedUserException e) {
+		}
+
+	}
+
+	@Test
+	public void testIncludesEmailIsSendedToState() throws NoLoggedUserException {
+		settedStateClient.includes(email);
+		verify(mock_state).includes(settedStateClient, email);
+
+	}
+
+	@Test
+	public void testAddFilterFailOnNoLoggedUserState() {
+		Filter filter = mock(Filter.class);
+		try {
+			client.addFilter(filter);
+			fail("Exception dont catched");
+		} catch (NoLoggedUserException e) {
+		}
+
+	}
+
+	@Test
+	public void testAddFilterIsSendedToState() throws NoLoggedUserException {
+		Filter filter = mock(Filter.class);
+		settedStateClient.addFilter(filter);
+		verify(mock_state).addFilter(settedStateClient, filter);
+	}
+
+	@Test
+	public void testERemoveFilterFailOnNoLoggedUserState() {
+		Filter filter = mock(Filter.class);
+		try {
+			client.remove(filter);
+			fail("Exception dont catched");
+		} catch (NoLoggedUserException e) {
+		}
+
+	}
 	
+	@Test
+	public void testRemoveIsSendedToState() throws NoLoggedUserException{
+		Filter filter = mock(Filter.class);
+		settedStateClient.remove(filter);
+		verify(mock_state).remove(settedStateClient,filter);
+	}
+	
+	@Test
+	public void testGetFiltersFailOnNoLoggeUserState(){
+		try{
+			client.getFilters();
+			fail("Exception dont catched");
+		} catch(NoLoggedUserException e){}
+		
+	}
+	
+	@Test
+	public void testGetFiltersIsSendedToState() throws NoLoggedUserException{
+		settedStateClient.getFilters();
+		verify(mock_state).getFilters(settedStateClient);
+	}
 }

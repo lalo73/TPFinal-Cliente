@@ -50,6 +50,9 @@ public class Client implements IClient {
 		this.getContancts().add(new ContactList("default list"));
 	}
 
+	/**
+	 * For all methods are delegated to client state
+	 */
 	public void askEmails() throws Exception {
 		this.getClientState().askEmails(this);
 

@@ -44,5 +44,7 @@ public class LoggedUserClientStateTest {
 
 	}
 	
+	@Test
+	public void test
 
 }
