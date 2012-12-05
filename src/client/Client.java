@@ -388,4 +388,9 @@ public class Client implements IClient {
 		return this.getClientState().getDefaultList(this);
 	}
 
+	@Override
+	public void changeTo() throws NoLoggedUserException {
+		this.getClientState().changeTo(this);
+	}
+
 }

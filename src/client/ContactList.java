@@ -13,6 +13,10 @@ public class ContactList implements IList {
 	
 	String name;
 	List<IContact> contacts;
+	
+	public boolean equals(ContactList list){
+		return this.getName().equals(list.getName());
+	}
 
 	public ContactList(String listName) {
 		this.setName(listName);

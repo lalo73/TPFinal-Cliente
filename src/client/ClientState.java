@@ -118,4 +118,6 @@ public abstract class ClientState  {
 
 	public abstract IList getDefaultList(IClient cl) throws NoFolderException, NoLoggedUserException;
 
+	public abstract void changeTo(Client client) throws NoLoggedUserException;
+
 }

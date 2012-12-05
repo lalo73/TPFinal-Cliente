@@ -6,6 +6,7 @@ package events;
 import java.util.Calendar;
 
 import client.Client;
+import exceptions.NoLoggedUserException;
 
 public class StateModifier extends Event {
 
@@ -27,7 +28,7 @@ public class StateModifier extends Event {
 	}
 
 	@Override
-	public void run( Client c) {
+	public void run( Client c) throws NoLoggedUserException {
 		// TODO Auto-generated method stub
 		/*
 		 *  Cliente Change State !!
