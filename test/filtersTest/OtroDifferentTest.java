@@ -17,7 +17,7 @@ public class OtroDifferentTest {
 	
 	Different dif;
 	IEmail e;
-    boolean res;
+    
 	
     @Before
 	public void setUp() throws Exception {
@@ -28,14 +28,14 @@ public class OtroDifferentTest {
     	e=mock(Email.class);
     	
     	Different dif =new Different("TPI",sen);
-		res=dif.satisfy(e);
+		dif.satisfy(e);
 	}
 
 	
 	@Test
 	public void differentTest(){
 		//Al ser el sender diferente al que yo quiero("TPI"),satisfy debe ser True 
-		assertTrue(res);
+		assertTrue(dif.satisfy(e););
 	}
 	
 }

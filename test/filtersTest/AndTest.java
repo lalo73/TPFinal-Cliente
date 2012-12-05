@@ -15,7 +15,6 @@ public class AndTest {
 	Equal eq;
 	Email e;
 	CompoundAnd cAnd;
-	boolean res;
 	ArrayList<Rule> reglas = new ArrayList<Rule>();
 
 	@Before
@@ -35,16 +34,14 @@ public class AndTest {
 	@Test
 	public void testAndTrue() {
 		when(eq.satisfy(e)).thenReturn(true);
-		res = cAnd.satisfy(e);
 		// Las 2 reglas dan true por lo tanto la conuncion da true
-		assertTrue(res);
+		assertTrue(cAnd.satisfy(e));
 	}
 
 	@Test
 	public void testAndFalse() {
 		// Una de las reglas es false, la conjuncion sera false
 		when(eq.satisfy(e)).thenReturn(false);
-		res = cAnd.satisfy(e);
-		assertFalse(res);
+		assertFalse(cAnd.satisfy(e));
 	}
 }

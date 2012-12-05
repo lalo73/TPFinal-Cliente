@@ -14,23 +14,21 @@ public class ContainTest {
 	Countain con;
 	IEmail email;
     boolean res;
+    Subject sub;
 
 	@Before
 	public void setUp() throws Exception {
+		email=mock(Email.class);
+		Subject sub=mock(Subject.class);
+		when(sub.getField(email)).thenReturn("TrabajoPractico");
+		con =new Countain("Spam",sub);
 		
-
 	}
 
 	@Test
 	public void equalTest(){
-		//Al no contener el mismo subject no satisfy debe dar False
-		email=mock(Email.class);
-		Subject sub=mock(Subject.class);
-		when(sub.getField(email)).thenReturn("TrabajoPractico");
-		
-		Countain con =new Countain("Spam",sub);
-		
-		assertFalse(con.satisfy(email));
+	 //Al no contener el mismo subject no satisfy debe dar False
+	 assertFalse(con.satisfy(email));
 	}
 	
 	

@@ -24,21 +24,28 @@ public class OrTest {
 	public void setUp() throws Exception {
 		//Mock de Different
 		dif=mock(Different.class);
-		when(dif.satisfy(e)).thenReturn(true);
+		
 		//Mock de Equal
 		eq=mock(Equal.class);
-		when(eq.satisfy(e)).thenReturn(true);
+		
 		
 		reglas.add(dif);
 		reglas.add(eq);
 		cOR=new CompoundOr(reglas);
-		res=cOR.satisfy(e);
 	}
 	
 	@Test
-	public void testAndTrue(){
+	public void testOrTrue(){
 		//Las 2 reglas son true por lo tanto la disyncion sera true.
-		assertTrue(res);
+		when(eq.satisfy(e)).thenReturn(true);
+		when(dif.satisfy(e)).thenReturn(true);
+		assertTrue(cOR.satisfy(e));
 		}
 
+	@Test
+	public void testOrFalse(){
+		when(eq.satisfy(e)).thenReturn(false);
+		when(dif.satisfy(e)).thenReturn(false);
+		assertFalse(cOR.satisfy(e));
+	}
 }

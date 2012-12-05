@@ -17,6 +17,10 @@ public class OtroContainTest {
 
 	@Before
 	public void setUp() throws Exception {
+		email=mock(Email.class);
+		Subject sub=mock(Subject.class);
+		when(sub.getField(email)).thenReturn("TrabajoPractico");
+		con =new Countain("Spam",sub);
 		
 
 	}
@@ -24,12 +28,6 @@ public class OtroContainTest {
 	@Test
 	public void containTest(){
 		//Al no contener el mismo subject no satisfy debe dar False
-		email=mock(Email.class);
-		Subject sub=mock(Subject.class);
-		when(sub.getField(email)).thenReturn("TrabajoPractico");
-		
-		Countain con =new Countain("Spam",sub);
-		
 		assertFalse(con.satisfy(email));
 	}
 	

@@ -33,13 +33,13 @@ public class SubjectTest {
 		
 		
 		s=new Subject();
-		res=s.getField(email);
+		
 	}
 		
 	@Test
 	public void senderTest(){
 		
-		assertEquals("Trabajo",res);
+		assertEquals("Trabajo",s.getField(email));
 	}	
 	
 }

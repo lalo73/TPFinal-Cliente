@@ -23,12 +23,12 @@ public class EqualTest {
 		when(date.getField(email)).thenReturn("12/12/12");
 
 		eq = new Equal("12/12/12", date);
-		res = eq.satisfy(email);
+		
 	}
 
 	@Test
 	public void equalTest() {
-		assertTrue(res);
+		assertTrue(eq.satisfy(email));
 	}
 
 }
