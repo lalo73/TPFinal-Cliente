@@ -280,4 +280,10 @@ public class NoLoggedUserClientState extends ClientState {
 		throw new NoLoggedUserException();
 	}
 
+	@Override
+	public void changeTo(Client client) throws NoLoggedUserException {
+		throw new NoLoggedUserException();
+		
+	}
+
 }

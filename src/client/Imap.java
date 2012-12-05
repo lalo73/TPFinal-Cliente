@@ -50,18 +50,23 @@ public class Imap extends Pop3 {
 	}
 
 	@Override
-	public IEmail read(IClient client, IEmail email) throws exception.CannotFindEmailException, CannotFindUserException {
+	public IEmail read(IClient client, IEmail email)
+			throws exception.CannotFindEmailException, CannotFindUserException {
 		if (email.isFull())
 			return email;
-		IEmail complete_email = changeToClientEmail(client.getLoggedUser().getServer().sendEmail(changeToServerEmailHead(email.getHead()), client.getLoggedUser().getName()));
+		IEmail complete_email = changeToClientEmail(client
+				.getLoggedUser()
+				.getServer()
+				.sendEmail(changeToServerEmailHead(email.getHead()),
+						client.getLoggedUser().getName()));
 		complete_email.setFull(true);
 		return complete_email;
 	}
-	
+
 	@Override
-	public IEmail read(IClient client, IHeader header)
-			throws Exception {
-		IUser user = client.getLoggedUser(); 
-		return changeToClientEmail(user.getServer().sendEmail(changeToServerEmailHead(header), user.getName()));
+	public IEmail read(IClient client, IHeader header) throws Exception {
+		IUser user = client.getLoggedUser();
+		return changeToClientEmail(user.getServer().sendEmail(
+				changeToServerEmailHead(header), user.getName()));
 	}
 }

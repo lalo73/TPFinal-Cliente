@@ -58,6 +58,9 @@ public class OnHoliday extends LoggedUserClientState {
 		this.reSendToEmail = reSendToEmail;
 	}
 	
+	public void changeTo(IClient client) throws NoLoggedUserException{
+		client.changeToOnlineState();
+	}
 	
 
 }

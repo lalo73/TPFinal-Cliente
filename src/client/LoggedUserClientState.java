@@ -28,9 +28,10 @@ public class LoggedUserClientState extends ClientState {
 
 	@Override
 	public void askEmails(IClient cl) throws Exception {
-		List<IEmail> emails = this.getAccesType(cl).askEmails(cl, false);
+		List<IEmail> emails = cl.getLoggedUser().getAccesType()
+				.askEmails(cl, false);
 
-		this.filtrar(cl, emails);
+		cl.filtrar(emails);
 
 	}
 
@@ -85,7 +86,8 @@ public class LoggedUserClientState extends ClientState {
 	}
 
 	@Override
-	public void addContact(IClient cl, String name, String userEmail) throws NoFolderException, NoLoggedUserException {
+	public void addContact(IClient cl, String name, String userEmail)
+			throws NoFolderException, NoLoggedUserException {
 		cl.getDefaultList().add(new Person(name, userEmail));
 	}
 
@@ -333,6 +335,11 @@ public class LoggedUserClientState extends ClientState {
 	public void includes(IClient cl, IList c) throws NoLoggedUserException {
 		cl.getContancts().contains(c);
 
+	}
+
+	@Override
+	public void changeTo(Client client) throws NoLoggedUserException {
+		client.changeToHolidayState(client.getLoggedUser().getName());
 	}
 
 }

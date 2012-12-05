@@ -23,6 +23,8 @@ public interface IClient {
 	public void changeToHolidayState(String email) throws NoLoggedUserException;
 
 	public void changeToOnlineState() throws NoLoggedUserException;
+	
+	public void changeTo() throws NoLoggedUserException;
 
 	// Log in and Log out client protocol
 	public void logIn(String user, String password, Server e, IAccesType at)
