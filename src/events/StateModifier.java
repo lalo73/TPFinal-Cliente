@@ -6,6 +6,7 @@ package events;
 import java.util.Calendar;
 
 import client.Client;
+import exceptions.NoLoggedUserException;
 
 public class StateModifier extends Event {
 
@@ -16,25 +17,15 @@ public class StateModifier extends Event {
 	}
 
 	@Override
-	public boolean valid(Calendar d) {
-		// TODO Auto-generated method stub
-		/* The event is not valid if "d" is more greater than the EventDate plus 
-		 * the duration
-		 */
-		Calendar p = this.getEventDate();
-		p.add(Calendar.DAY_OF_MONTH, this.getDuration());
-		return d.equals(p);
-	}
-
-	@Override
-	public void run( Client c) {
+	public void run( Client c) throws NoLoggedUserException {
 		// TODO Auto-generated method stub
 		/*
 		 *  Cliente Change State !!
 		 */
-		c.changeTo();
+		c.changeToHolidayState(2333);
+		c.changeToHolidayState("On Holidays");
 		this.getFrecuency().nextDate();
 	}
- // UN PROBLEMA DE INTERPRETACION QUE ACLARAR PARA CUANDO DE DEBE VOLVER DE LAS VACACIONES
+
 	
 }

@@ -6,7 +6,7 @@ package events;
 
 import java.util.Calendar;
 
-public final class EveryDay extends Frecuency{
+public  class EveryDay extends Frecuency{
 
 	public EveryDay(Calendar date) {
 		super(date);

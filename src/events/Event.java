@@ -8,6 +8,7 @@ import interfaces.IEvent;
 import java.util.Calendar;
 
 import client.Client;
+import exceptions.ExpiredEventException;
 import exceptions.NoLoggedUserException;
 
 public abstract class Event implements IEvent{
@@ -56,7 +57,16 @@ public abstract class Event implements IEvent{
 		this.description = description;
 	}
 	
-	public void act (Client c,Calendar d) throws NoLoggedUserException{
+	public boolean valid(Calendar d) {
+		/* The event is not valid if "d" is more greater than the EventDate plus 
+		 * the duration
+		 */
+		Calendar p = this.getEventDate();
+		p.add(Calendar.DAY_OF_MONTH, this.getDuration());
+		return d.before(p);
+	}
+	
+	public void act (Client c,Calendar d) throws NoLoggedUserException, ExpiredEventException{
 		if (this.getFrecuency().shouldAct(d) && this.valid(d)){
 			this.run(c);
 		}

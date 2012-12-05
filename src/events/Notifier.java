@@ -16,12 +16,6 @@ public class Notifier extends Event{
 	}
 
 	@Override
-	public boolean valid(Calendar d) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
 	public void run(Client c) throws NoLoggedUserException {
 		// TODO Auto-generated method stub
 		c.sendMessage(231231,"Event");

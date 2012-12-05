@@ -5,8 +5,10 @@ package events;
 
 import java.util.Calendar;
 
+
+
 public abstract class Frecuency {
-      private Calendar date;
+      private Calendar date = Calendar.getInstance();
 
 	public Calendar getDate() {
 		return date;
@@ -22,6 +24,6 @@ public abstract class Frecuency {
 	
 	public abstract void nextDate();
 	public boolean shouldAct(Calendar c) {
-		return c.before(this.getDate()) || c.equals(this.getDate());
+		return c.equals(this.getDate());
 	}
 }
