@@ -10,7 +10,7 @@ import filter.Subject;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class OtroContainTest {
+public class ContainTest {
 	Countain con;
 	IEmail email;
     boolean res;
@@ -22,7 +22,7 @@ public class OtroContainTest {
 	}
 
 	@Test
-	public void containTest(){
+	public void equalTest(){
 		//Al no contener el mismo subject no satisfy debe dar False
 		email=mock(Email.class);
 		Subject sub=mock(Subject.class);

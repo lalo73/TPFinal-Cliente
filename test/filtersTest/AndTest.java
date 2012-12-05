@@ -16,12 +16,16 @@ public class AndTest {
 	CompoundAnd cAnd;
 	boolean res;
 	ArrayList<Rule>reglas=new ArrayList<Rule>();
+	
 	@Before
 	public void setUp() throws Exception {
+		//Mock de Different
 		dif=mock(Different.class);
-		eq=mock(Equal.class);
 		when(dif.satisfy(e)).thenReturn(true);
+		//Mock de Equal
+		eq=mock(Equal.class);
 		when(eq.satisfy(e)).thenReturn(true);
+		
 		reglas.add(dif);
 		reglas.add(eq);
 		cAnd=new CompoundAnd(reglas);
@@ -30,11 +34,12 @@ public class AndTest {
 
 	@Test
 	public void testAndTrue(){
-		when(eq.satisfy(e)).thenReturn(true);
+		//Las 2 reglas dan true por lo tanto la conuncion da true
 		assertTrue(res);
 		}
 	
 	public void testAndFalse(){
+		//Una de las reglas es false, la conjuncion sera false
 		when(eq.satisfy(e)).thenReturn(false);
 	    assertFalse(res);
 	    }

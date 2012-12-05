@@ -22,10 +22,13 @@ public class OrTest {
 	
 	@Before
 	public void setUp() throws Exception {
+		//Mock de Different
 		dif=mock(Different.class);
-		eq=mock(Equal.class);
 		when(dif.satisfy(e)).thenReturn(true);
+		//Mock de Equal
+		eq=mock(Equal.class);
 		when(eq.satisfy(e)).thenReturn(true);
+		
 		reglas.add(dif);
 		reglas.add(eq);
 		cOR=new CompoundOr(reglas);
@@ -34,6 +37,7 @@ public class OrTest {
 	
 	@Test
 	public void testAndTrue(){
+		//Las 2 reglas son true por lo tanto la disyncion sera true.
 		assertTrue(res);
 		}
 

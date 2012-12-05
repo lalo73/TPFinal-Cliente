@@ -9,8 +9,6 @@ import org.junit.Test;
 import client.*;
 import filter.MarkRead;
 
-//CORRE
-
 public class MarkReadTest {
 
     Email email;
@@ -20,15 +18,18 @@ public class MarkReadTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		
+		//Mock de client.
 		cl=mock(Client.class);
-		email=mock(Email.class);//Email 1
+		//Mock de email.
+		email=mock(Email.class);
 		when(email.isReaded()).thenReturn(false);
+		
 		mr=new MarkRead(false);
 	}
 
 	@Test
 	public void testMarkRead(){
+		//Se verifica que se mande el msj para marcar como leido al mail.
 		mr.act(email,cl);
 		verify(email).setReaded(true);
 		

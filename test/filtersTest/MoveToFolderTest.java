@@ -21,9 +21,13 @@ public class MoveToFolderTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		
+		//Mock de folder
 		folder=mock(Folder.class);
+		
+		//Mock de email
 		email=mock(Email.class);
+		
+		//Mock de client
 		client=mock(Client.class);
 		
 		mtf=new MoveToFolder(folder,false);
@@ -33,6 +37,7 @@ public class MoveToFolderTest {
 	
 	@Test
 	public void testMoveToFolder() throws NoLoggedUserException{
+		//Se verifica que se mande el metodo para que el email sea movido a otra carpeta.
 		mtf.act(email,client);
 		verify(client).addToFolder(folder,email);
 		

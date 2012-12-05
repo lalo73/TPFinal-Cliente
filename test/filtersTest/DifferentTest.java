@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 //Corre
-public class OtroDifferentTest {
+public class DifferentTest {
 	
 	Different dif;
 	IEmail e;
