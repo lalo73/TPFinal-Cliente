@@ -49,11 +49,7 @@ public class LoggedUserClientState extends ClientState {
 	@Override
 	public void sendEmail(IClient cl, IEmail e) {
 
-		if (cl.getSmtp().logIn(cl.getLoggedUser().getName(),
-				cl.getLoggedUser().getPassword(), "Multi-SMKTP Server")) {
-			cl.getSmtp().send(e);
-
-		}
+		cl.getSmtp().send(e);
 		cl.getSmtp().logOut();
 
 	}

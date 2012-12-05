@@ -58,6 +58,11 @@ public class Client implements IClient {
 
 	}
 
+	/**Throws a exception while the client dont login.
+	 * 
+	 * @param listName
+	 * @throws NoLoggedUserException
+	 */
 	public void createList(String listName) throws NoLoggedUserException {
 		this.getClientState().createList(this, listName);
 	}

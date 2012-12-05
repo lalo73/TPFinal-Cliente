@@ -4,6 +4,7 @@ package filtersTest;
 import org.junit.Before;
 import org.junit.Test;
 import interfaces.IEmail;
+import interfaces.IHeader;
 import client.*;
 import filter.Different;
 import filter.Sender;
@@ -14,28 +15,25 @@ import static org.mockito.Mockito.*;
 
 //Corre
 public class DifferentTest {
-	
+
 	Different dif;
 	IEmail e;
-    boolean res;
+	IHeader head;
 	
-    @Before
+	@Before
 	public void setUp() throws Exception {
-		//Mock de Sender
-    	Sender sen =mock(Sender.class);
-    	when(sen.getField(e)).thenReturn("Google");
-    	//Mock de Email
-    	e=mock(Email.class);
-    	
-    	Different dif =new Different("TPI",sen);
-		res=dif.satisfy(e);
+		// Mock de Sender
+		e = mock(Email.class);
+		Sender sen = mock(Sender.class);
+		when(sen.getField(e)).thenReturn("Google");
+		dif = new Different("TPI", sen);
 	}
 
-	
 	@Test
-	public void differentTest(){
-		//Al ser el sender diferente al que yo quiero("TPI"),satisfy debe ser True 
-		assertTrue(res);
+	public void differentTest() {
+		// Al ser el sender diferente al que yo quiero("TPI"),satisfy debe ser
+		// True
+		assertTrue(dif.satisfy(e));
 	}
-	
+
 }

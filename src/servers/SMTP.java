@@ -8,14 +8,15 @@ public class SMTP {
 	private String userName;
 	private String password;
 	
-	SMTP(String userName,String password, String serverSMTP){
+	public SMTP(String userName,String password, String serverSMTP){
 		this.setServerSMTP(serverSMTP);
 	}
 	
+	/**
+	 * Simula el logueo de un usuario
+	 */
 	public boolean logIn(String userName,String password, String serverSMTP){
-		/**
-		 * Simula el logueo de un usuario
-		 */
+		
 		return true;
 	}
 	
